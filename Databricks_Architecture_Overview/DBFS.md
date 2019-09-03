@@ -17,7 +17,7 @@ system("ls /dbfs/", intern = T)
 system("cp /dbfs/directory_A /dbfs/directory_B
 
 ## Persist from driver to DBFS
-system("cp /databricks/driver/file.txt /dbfs/file.txt
+system("cp /databricks/driver/file.txt /dbfs/file.txt")
 ```
 
 ##### Reading Data
@@ -49,5 +49,4 @@ model <- readRDS(file = "/dbfs/your/directory/model.RDS")
 You can read more about the SparkR and sparklyr data types in the `Spark - Distributed R sections` under `SparkR vs. sparklyr`.  We'll also talk more about DBFS in the package management section of this guide.
 
 # Using DBFS resources for Deep Learning 
-Within DBFS there is a `/ml` directory. This directory was designed with an optimized FUSE mount specifically for deep learning
-and processing image data. 
+Within DBFS there is a `/ml` directory. This directory was designed with an optimized FUSE mount specifically for deep learning and processing image data. To learn more, see the [high performance local APIs](https://docs.databricks.com/user-guide/databricks-file-system.html#high-performance-local-apis) section of the DBFS documentation.
