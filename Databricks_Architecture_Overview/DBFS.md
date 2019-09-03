@@ -14,7 +14,7 @@ By default, your working directory in an R session on Databricks will be on the 
 system("ls /dbfs/", intern = T)
 
 ## Copy from one directory to another
-system("cp /dbfs/directory_A /dbfs/directory_B
+system("cp /dbfs/directory_A /dbfs/directory_B")
 
 ## Persist from driver to DBFS
 system("cp /databricks/driver/file.txt /dbfs/file.txt")
