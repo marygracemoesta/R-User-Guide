@@ -1,6 +1,6 @@
 # Package Management on Databricks
 
-Databricks supports a variety of options for installing and managing new, old, and custom R packages.  We'll begin this section by providing examples of the most common and basic approaches, then progress into more advanced options.
+Databricks supports a variety of options for installing and managing new, old, and custom R packages.  In this chapter we'll begin by providing examples of the basic approaches, then progress into more advanced options.
 
 ## Installing Packages
 
@@ -29,9 +29,13 @@ require(devtools)
 install_version("ggplot2", version = "0.9.1", repos = "http://cran.us.r-project.org")
 ```
 
-To install an older package at the cluster scope, you will have to specify the repository it can be found in in the Cluster UI.  Typically this will be a snapshot from the [Microsoft R Application Network](https://mran.microsoft.com/) (MRAN) corresponding to the date when your package version was the latest on CRAN.  For instance, if you wanted the version of `dplyr` available on 12/19/2015, specify `https://cran.microsoft.com/snapshot/2015-12-19/` as the package repository.
+To install an older package at the cluster scope, you will have to specify the repository it can be found in in the Cluster UI.  Typically this will be a snapshot from the [Microsoft R Application Network](https://mran.microsoft.com/) (MRAN) corresponding to the date when your package version was the latest on CRAN.  
+
+For instance, if you wanted the version of `dplyr` available on 12/19/2015, specify `https://cran.microsoft.com/snapshot/2015-12-19/` as the package repository.
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/install_version.png?raw=true">
+
+Checking the package version on our cluster we get 
 
 ##### Faster Package Loads
 
