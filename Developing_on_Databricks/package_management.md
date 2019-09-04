@@ -4,7 +4,7 @@ Databricks supports a variety of options for installing and managing new, old, a
 
 ## Installing Packages
 
-_Notebook Scope_
+#### Notebook Scope
 
 At the most basic level, you can install R packages in your notebooks and RStudio scripts using the familiar `install.packages()` function. 
 
@@ -12,7 +12,7 @@ At the most basic level, you can install R packages in your notebooks and RStudi
 
 This will install the package on the driver node **only**.  
 
-_Cluster Scope_
+#### Cluster Scope
 
 Under the 'Libraries' tab in the Clusters UI you can attach packages to the cluster.  
 
@@ -20,7 +20,7 @@ Under the 'Libraries' tab in the Clusters UI you can attach packages to the clus
 
 Each time the cluster is started these packages will be installed on *both* driver and worker nodes.  This is important for when you want to perform [user defined functions](insertlink) with `SparkR` or `sparklyr`.
 
-_Older Package Versions_
+#### Older Package Versions
 
 At the notebook or script level there are [several ways](https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages) to install older versions of packages.  For example,
 
