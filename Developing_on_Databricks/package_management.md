@@ -37,7 +37,7 @@ To install an older package at the cluster scope, you will have to specify the r
 
 Checking the package version on our cluster we get the correct version from the MRAN snapshot.
 
-<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/install_version_dplyr.png?raw=true">
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/install_dplyr.png?raw=true">
 
 ##### Faster Package Loads
 
