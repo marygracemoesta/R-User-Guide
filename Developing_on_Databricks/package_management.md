@@ -41,8 +41,25 @@ Checking the package version on our cluster after installing from this MRAN snap
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/install_dplyr.png?raw=true">
 
+In this way we can achieve greater customization of the packages on our cluster, even overwriting the versions pre-installed with Databricks Runtime.
+
+##### Custom Packages
+
+* Upload to DBFS through CLI
+* Install from source
+
 ##### Faster Package Loads
 
+_...you will be fastest if you avoid doing the work in the first place._ [[1]](http://dirk.eddelbuettel.com/blog/2017/11/27/#011_faster_package_installation_one)
+
+* Problem statement
+* How CRAN/MRAN works for windows/mac/linux
+* How R looks for libraries
+* Building a repo on DBFS
+* Setting the library path for faster package loads
 
 
 ##### Databricks Container Services
+
+* Idea of DCS
+* Examples of R Dockerfiles 
