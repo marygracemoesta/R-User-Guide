@@ -31,11 +31,11 @@ require(devtools)
 install_version("dplyr", version = "0.7.4", repos = "http://cran.us.r-project.org")
 ```
 
-To install an older package at the cluster scope, you will have to specify the repository it can be found in in the Cluster UI.  Typically this will be a snapshot from the [Microsoft R Application Network](https://mran.microsoft.com/) (MRAN) corresponding to the date when your package version was the latest on CRAN.  
+To install an older package at the cluster scope, use a snapshot from the [Microsoft R Application Network](https://mran.microsoft.com/) (MRAN).  MRAN saves the contents of CRAN on a daily basis and stores them as snapshots.  Packages pulled from a specific date will contain the latest version of the package available on the date.  For version 0.7.4 of `dplyr`, we would have to go back to the snapshot from December 19, 2015 and use that URL as the repository in the Cluster UI.
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/install_version.png?raw=true">
 
-Checking the package version on our cluster we get the correct version from the MRAN snapshot.
+Checking the package version on our cluster after installing from this MRAN snapshot, we see the correct version:
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/install_dplyr.png?raw=true">
 
