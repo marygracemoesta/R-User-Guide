@@ -22,20 +22,22 @@ Each time the cluster is started these packages will be installed on *both* driv
 
 #### Older Package Versions
 
+Each release of Databricks Runtime includes a set of pre-installed popular R packages.  These are typically the latest stable versions but sometimes installing the latest version of a package can break your code.  For instance, in [DBR 5.5, the version of `dplyr` is 0.8.0.1](https://docs.databricks.com/release-notes/runtime/5.5.html#installed-r-libraries) but your code won't run unless the installed version is 0.7.4.  How do you go about installing an older version of a package on Databricks?
+
 At the notebook or script level there are [several ways](https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages) to install older versions of packages.  For example,
 
 ```R
 require(devtools)
-install_version("ggplot2", version = "0.9.1", repos = "http://cran.us.r-project.org")
+install_version("dplyr", version = "0.7.4", repos = "http://cran.us.r-project.org")
 ```
 
 To install an older package at the cluster scope, you will have to specify the repository it can be found in in the Cluster UI.  Typically this will be a snapshot from the [Microsoft R Application Network](https://mran.microsoft.com/) (MRAN) corresponding to the date when your package version was the latest on CRAN.  
 
-For instance, if you wanted the version of `dplyr` available on 12/19/2015, specify `https://cran.microsoft.com/snapshot/2015-12-19/` as the package repository.
-
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/install_version.png?raw=true">
 
-Checking the package version on our cluster we get 
+Checking the package version on our cluster we get the correct version from the MRAN snapshot.
+
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/install_version_dplyr.png?raw=true">
 
 ##### Faster Package Loads
 
