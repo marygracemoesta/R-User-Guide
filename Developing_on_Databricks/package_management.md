@@ -79,7 +79,7 @@ _...you will be fastest if you avoid doing the work in the first place._ [[1]](h
 
 Attaching dozens of packages can significantly extend the time it takes for your cluster to come online or for your job to complete.  To understand why this happens, we need to take a closer look at where packages come from.  
 
-#### What is slowing us down?
+### What is slowing us down?
 
 CRAN stores packages in 3 different formats: Mac, Windows, and source.  
 
@@ -89,11 +89,11 @@ Binaries can be installed into your library directly, while source files need to
 
 There are therefore two problems to overcome with regard to performance.  First, since Databricks Runtime uses Linux you are always installing packages on CRAN from source.  Second, a Databricks cluster terminates when not actively in use, taking all of the installed packages down with it.  Every time we spin those machines up, we start from scratch and perform the work of downloading, compiling, and installing all over again. 
 
-#### Getting the Best Performance on Databricks
+### Getting the Best Performance on Databricks
 
 To get better performance we need to avoid doing all that work in the first place!  We can accomplish this by persisting our installed packages in a library on DBFS. 
 
-##### Building a Library on DBFS
+### Building a Library on DBFS
 
 All packages are installed into a _library_, which is a path on the file system.  You can check the what directories are recognized by R as libraries with `.libPaths()`.  
 
@@ -117,7 +117,7 @@ Now every package we install will persist to that directory on DBFS.  When the c
 
 See [this notebook](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/notebooks/Faster_R_Package_Loads_on_Databricks.Rmd) for a thorough example. 
 
-#### Setting the Library Path
+### Setting the Library Path
 
 Assuming you have installed your desired packages into a library on DBFS, you can begin using them with one command. 
 
