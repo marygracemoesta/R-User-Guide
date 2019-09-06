@@ -2,6 +2,8 @@
 
 Databricks supports a variety of options for installing and managing new, old, and custom R packages.  In this chapter we'll begin by providing examples of the basic approaches, then progress into more advanced options.
 
+1. [Installing Packages](#installing-packages)
+
 ## Installing Packages
 
 #### Notebook Scope
