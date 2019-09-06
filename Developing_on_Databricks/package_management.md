@@ -91,19 +91,45 @@ There are therefore two problems to overcome with regard to performance.  First,
 
 #### Getting the Best Performance on Databricks
 
-To get better performance we need to avoid doing all that work in the first place!  We can accomplish this through a combination of `.libPaths()` and DBFS.
+To get better performance we need to avoid doing all that work in the first place!  We can accomplish this by persisting our installed packages in a library on DBFS. 
 
-##### `.libPaths()`
+##### Building a Library on DBFS
 
 All packages are installed into a _library_, which is a path on the file system.  You can check the what directories are recognized by R as libraries with `.libPaths()`.  
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/defaul_libpaths.png?raw=true"> 
 
-When you call `library(dplyr)` R will search for the package in the libraries listed under `.libPaths()`, starting at the first path and if the package isn't found continue searching through the rest of the directories in order.  You can add and remove paths from `.libPaths()`, effectively telling R where to look for packages.   
+When you call `library(dplyr)` R will search for the package in the libraries listed under `.libPaths()`, starting at the first path and if the package isn't found continue searching through the rest of the directories in order.  You can add and remove paths from `.libPaths()`, effectively telling R where to look for packages.   Let's create a directory on DBFS and add it to the list of libraries.
 
-* Building a repo on DBFS
-* Setting the library path for faster package loads
+```bash
+%sh
+mkdir /dbfs/path_to_r_library 
+```
 
+```R
+## Append our library to the list
+.libPaths(c("/dbfs/path_to_r_library", .libPaths()))
+```
+
+Now every package we install will persist to that directory on DBFS.  When the cluster is terminated, the packages will remain.  
+
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/libpaths.png?raw=true">
+
+See [this notebook](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/notebooks/Faster_R_Package_Loads_on_Databricks.Rmd) for a thorough example. 
+
+#### Setting the Library Path
+
+Assuming you have installed your desired packages into a library on DBFS, you can begin using them with one command. 
+
+```R
+## Add library to search path
+.libPaths(c("/dbfs/path_to_r_library", .libPaths()))
+
+## Load libraries, no need to install again!
+library(custom_package)
+```
+
+If you need these libraries to be available to each worker, you can use an [init script](linktocome) or simply include it in your closure when running [user defined functions](linktocome).
 
 ## Databricks Container Services
 
