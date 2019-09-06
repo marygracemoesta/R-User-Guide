@@ -55,8 +55,27 @@ In this way we can achieve greater customization of the packages on our cluster,
 
 ##### Custom Packages
 
-* Upload to DBFS through CLI
-* Install from source
+If you want to install custom packages on Databricks, there are a few steps to follow.
+
+First, [build](https://kbroman.org/pkg_primer/pages/build.html) your package from the command line locally or [using RStudio](http://r-pkgs.had.co.nz/package.html).
+
+Next, use the [Databricks CLI](https://docs.databricks.com/user-guide/dev-tools/databricks-cli.html) to copy the file to DBFS.
+
+```bash
+databricks fs cp /local_path_to_package/custom_package.tar.gz dbfs:/path_to_package/
+```
+
+Once you have the `tar.gz` file on DBFS, you can install the package using `install.packages()`.
+
+```R
+## In R
+install.packages("/dbfs/path_to_package/custom_package.tar.gz", type = "source", repos = NULL)
+```
+This can also be done in a `%sh` cell:
+
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/install_custom_sh.png?raw=true">
+
+If you want to install the custom package on each node in the cluster you will need to use an [init script](linktocome).
 
 ## Faster Package Loads
 
