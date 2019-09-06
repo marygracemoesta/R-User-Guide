@@ -91,13 +91,16 @@ There are therefore two problems to overcome with regard to performance.  First,
 
 #### Getting the Best Performance on Databricks
 
-To avoid repeating this work every time we turn on a cluster we will need to persist the installed packages to a directory on DBFS.  This will be a one time operation, and afterwards we can simply instruct R to look for the packages on that path. 
+To get better performance we need to avoid doing all that work in the first place!  We can accomplish this through a combination of `.libPaths()` and DBFS.
 
-##### Installing Packages on DBFS
+##### `.libPaths()`
 
+All packages are installed into a _library_, which is a path on the file system.  You can check the what directories are recognized by R as libraries with `.libPaths()`.  
 
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/defaul_libpaths.png?raw=true"> 
 
-* How R looks for libraries
+When you call `library(dplyr)` R will search for the package in the libraries listed under `.libPaths()`, starting at the first path and if the package isn't found continue searching through the rest of the directories in order.  You can add and remove paths from `.libPaths()`, effectively telling R where to look for packages.   
+
 * Building a repo on DBFS
 * Setting the library path for faster package loads
 
