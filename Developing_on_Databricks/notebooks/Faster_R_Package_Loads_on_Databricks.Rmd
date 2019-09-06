@@ -1,0 +1,161 @@
+
+---
+title: "Faster_R_Package_Loads_on_Databricks"
+output:
+  html_document:
+    toc: true
+---
+
+
+```{r}
+%md
+##### Faster R Package Loads on Databricks
+
+_you will be fastest if you avoid doing the work in the first place_ [[1]](http://dirk.eddelbuettel.com/blog/2017/11/27/#011_faster_package_installation_one)
+
+In R, you typically download and install a variety of _packages_ from CRAN.  These packages are installed into a _library_, which is a path on the file system.  You can check the what directories are recognized by R as libraries with `.libPaths()`
+```
+
+
+```{r}
+.libPaths()
+```
+
+
+```{r}
+%md
+When you call `library(dplyr)` R will search for the package in the libraries listed under `.libPaths()`, starting at the first path and if the package isn't found continue searching through the rest of the directories in order.  You can add and remove paths from `.libPaths()`, telling R to look for packages in the library of your choice.   
+
+For example:
+```
+
+
+```{r}
+%sh
+mkdir /usr/lib/R/proj-lib-test
+```
+
+
+```{r}
+.libPaths(c("/usr/lib/R/proj-lib-test", .libPaths()))
+```
+
+
+```{r}
+.libPaths()
+```
+
+
+```{r}
+%md
+Now let's run a little experiment.  Let's install a few different types of packages into our custom library:
+
+* The latest version of some packages from CRAN
+* An older version of a package from CRAN
+* A custom package that we built locally
+
+This way we can validate that a pre-compiled library spanning new, old, and custom can be built and made available to the cluster.
+
+**Note the first line in the output of the following cell.  We are installing into the first library on the search path - the directory we created moments ago.**
+```
+
+
+```{r}
+install.packages(c('quantreg', 'broom', 'noncensus'))
+```
+
+
+```{r}
+## This could be done using MRAN as well, changing the repos parameter.
+install.packages("https://cran.r-project.org/src/contrib/Archive/jsonlite/jsonlite_1.5.tar.gz", type = "source", dependencies = T)
+```
+
+
+```{r}
+install.packages("/dbfs/rk/r-projects/minimal/renv/library/Local_lib/hosta/hosta_1.0.tar.gz", type = "source", repos = NULL)
+```
+
+
+```{r}
+%md
+Now if we look at the contents of our library, we'll see the packages listed.
+```
+
+
+```{r}
+%sh
+ls /usr/lib/R/proj-lib-test
+```
+
+
+```{r}
+%md
+We can see the conventional structure of the installed `broom` package by listing the contents of its directory.  
+```
+
+
+```{r}
+%sh
+ls /usr/lib/R/proj-lib-test/broom
+```
+
+
+```{r}
+%md
+When this cluster is terminated, this custom library and all of our work will be too.  To persist it, copy to DBFS.  
+```
+
+
+```{r}
+%sh
+cp -R /usr/lib/R/proj-lib-test /dbfs/rk/lib
+```
+
+
+```{r}
+%fs
+ls /rk/lib/proj-lib-test
+```
+
+
+```{r}
+%md
+Since R is aware of DBFS on Databricks, we can add this path to `.libPaths()`.
+```
+
+
+```{r}
+.libPaths("/dbfs/rk/lib/proj-lib-test/")
+```
+
+
+```{r}
+.libPaths()
+```
+
+
+```{r}
+%md
+Now all that's left to do is load the packages into memory from our library on DBFS.  We use the `lib.loc =` parameter to specify the exact library to look in.  This prevents R from searching other libraries in the search path, and will throw an error if the package isn't available.  This would be unnecessary in a case where there's only one library on the search paths of `.libPaths()`.
+```
+
+
+```{r}
+library(hosta, lib.loc = .libPaths()[1])
+```
+
+
+```{r}
+library(jsonlite, lib.loc = .libPaths()[1])
+```
+
+
+```{r}
+packageVersion("jsonlite")
+```
+
+
+```{r}
+jsonlite::toJSON(mtcars)
+```
+
