@@ -14,7 +14,7 @@ Contents
 
 ## Installing Packages
 
-#### Notebook Scope
+### Notebook Scope
 
 At the most basic level, you can install R packages in your notebooks and RStudio scripts using the familiar `install.packages()` function. 
 
@@ -22,7 +22,7 @@ At the most basic level, you can install R packages in your notebooks and RStudi
 
 This will install the package on the driver node **only**.  
 
-#### Cluster Scope
+### Cluster Scope
 
 Under the 'Libraries' tab in the Clusters UI you can attach packages to the cluster.  
 
@@ -30,7 +30,7 @@ Under the 'Libraries' tab in the Clusters UI you can attach packages to the clus
 
 Each time the cluster is started these packages will be installed on *both* driver and worker nodes.  This is important for when you want to perform [user defined functions](insertlink) with `SparkR` or `sparklyr`.
 
-#### Older Package Versions
+### Older Package Versions
 
 Each release of Databricks Runtime includes a set of pre-installed popular R packages.  These are typically the latest stable versions but sometimes installing the latest version of a package can break your code.  
 
@@ -53,7 +53,7 @@ Checking the package version on our cluster after installing from this MRAN snap
 
 In this way we can achieve greater customization of the packages on our cluster, even overwriting the versions pre-installed with Databricks Runtime.
 
-##### Custom Packages
+### Custom Packages
 
 To install a custom package on Databricks, first [build](https://kbroman.org/pkg_primer/pages/build.html) your package from the command line locally or [using RStudio](http://r-pkgs.had.co.nz/package.html).  Next, use the [Databricks CLI](https://docs.databricks.com/user-guide/dev-tools/databricks-cli.html) to copy the file to DBFS:
 
@@ -77,8 +77,26 @@ If you want to install the custom package on each node in the cluster you will n
 
 _...you will be fastest if you avoid doing the work in the first place._ [[1]](http://dirk.eddelbuettel.com/blog/2017/11/27/#011_faster_package_installation_one)
 
-* Problem statement
-* How CRAN/MRAN works for windows/mac/linux
+Attaching dozens of packages can significantly extend the time it takes for your cluster to come online or for your job to complete.  To understand why this happens, we need to take a closer look at where packages come from.  
+
+#### What is slowing us down?
+
+CRAN stores packages in 3 different formats: Mac, Windows, and source.  
+
+The default behavior of `install.packages()` is to download the package binaries for your operating system, _if they are available_.  If they aren't available R will instead download the package source files from CRAN in `packageName.tar.gz`format.  
+
+Binaries can be installed into your library directly, while source files need to be compiled first.  Windows and Mac users will usually be able to skip compiling, shortening overall installation time.  Linux users will almost always have to compile from source.  This extra time spent compiling adds up quickly when installing many packages.
+
+There are therefore two problems to overcome with regard to performance.  First, since Databricks Runtime uses Linux you are always installing packages on CRAN from source.  Second, a Databricks cluster terminates when not actively in use, taking all of the installed packages down with it.  Every time we spin those machines up, we start from scratch and perform the work of downloading, compiling, and installing all over again. 
+
+#### Getting the Best Performance on Databricks
+
+To avoid repeating this work every time we turn on a cluster we will need to persist the installed packages to a directory on DBFS.  This will be a one time operation, and afterwards we can simply instruct R to look for the packages on that path. 
+
+##### Installing Packages on DBFS
+
+
+
 * How R looks for libraries
 * Building a repo on DBFS
 * Setting the library path for faster package loads
