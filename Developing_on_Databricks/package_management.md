@@ -2,7 +2,15 @@
 
 Databricks supports a variety of options for installing and managing new, old, and custom R packages.  In this chapter we'll begin by providing examples of the basic approaches, then progress into more advanced options.
 
-1. [Installing Packages](#installing-packages)
+Contents
+
+* [Installing Packages](#installing-packages)
+  * [Notebook Scope](#notebook-scope)
+  * [Cluster Scope](#cluster-scope)
+  * [Older Package Versions](#older-package-versions)
+  * [Custom Packages](#custom-packages)
+* [Faster Package Loads](#faster-package-loads)
+* [Databricks Container Services](#databricks-container-services)
 
 ## Installing Packages
 
@@ -50,7 +58,7 @@ In this way we can achieve greater customization of the packages on our cluster,
 * Upload to DBFS through CLI
 * Install from source
 
-##### Faster Package Loads
+## Faster Package Loads
 
 _...you will be fastest if you avoid doing the work in the first place._ [[1]](http://dirk.eddelbuettel.com/blog/2017/11/27/#011_faster_package_installation_one)
 
@@ -61,7 +69,7 @@ _...you will be fastest if you avoid doing the work in the first place._ [[1]](h
 * Setting the library path for faster package loads
 
 
-##### Databricks Container Services
+## Databricks Container Services
 
 * Idea of DCS
 * Examples of R Dockerfiles 
