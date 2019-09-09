@@ -125,7 +125,7 @@ Assuming you have installed your desired packages into a library on DBFS, you ca
 ## Add library to search path
 .libPaths(c("/dbfs/path_to_r_library", .libPaths()))
 
-## Load libraries, no need to install again!
+## Load package, no need to install again!
 library(custom_package)
 ```
 
