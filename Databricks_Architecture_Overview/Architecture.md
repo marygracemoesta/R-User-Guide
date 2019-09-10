@@ -1,6 +1,16 @@
-# Where does R sit in the Spark Architecture?
-It is important to understand the underlying architecture before jumping into R on Databricks. In SparkR there are two
-main components:
+# Databricks Architecture Overview
+As a foundation to working with R on Databricks, it's important to understand where R fits into the overall architecture of a Databricks cluster.  In this section we'll review core concepts of Spark clusters, as well as the case of single node data science with R.
+
+**Contents**
+
+* Cluster Computing with Spark and R
+* Single Node Data Science with R
+
+### Cluster Computing with Spark and R 
+When the size of your data will no longer fit in memory on a single node, it's time to turn to Spark.  Spark is a distributed, in memory processing engine with a rich functionality for data engineering and data science that can scale to petabytes of data.  Luckily for R users, there are two APIs for accessing Spark - `SparkR` and `sparklyr`.  For now we will focus on the common architecture between the two, but if you want more detail on the differences between the two see [this section](linktocome).
+
+At a high level, here is how an R session interacts with a Spark cluster:
+
 1. R-JVM bridge in the driver - this bridge allows for R jobs to be submitted to a Databricks cluster
 2. Launching R processes on executors - the process is key to achieve parallelism in SparkR and sparklyr
 
