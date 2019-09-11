@@ -5,7 +5,7 @@ As a foundation to working with R on Databricks, it's important to understand wh
 
 * [Cluster Computing with Spark](#cluster-computing-with-spark)
   * [Spark Architecture](#spark-architecture)
-  * [R on Spark]
+  * [R on Spark](#r-on-spark)
 * [Single Node R on Databricks](#single-node-r-on-databricks)
 
 
@@ -18,11 +18,11 @@ When the size of your data will no longer fit in memory on a single node, it's t
 
 The diagram below shows an example Apache Spark cluster, consisting of one `Driver` node and four `Executor` nodes. Each of these Executor nodes have `slots` which are logical equivalent to individual execution cores of a single machine.
 
-<img src="http://training.databricks.com/databricks_guide/gentle_introduction/videoss_logo.png" width=680 height=480> <br><br>
+<img src="http://training.databricks.com/databricks_guide/gentle_introduction/videoss_logo.png" width=850 height=480> <br><br>
 
 The Driver sends **Tasks** to the empty slots on the Executors when there are remaining tasks to be completed:
 
-<img src="http://training.databricks.com/databricks_guide/gentle_introduction/spark_cluster_tasks.png" width=680 height=480><br>
+<img src="http://training.databricks.com/databricks_guide/gentle_introduction/spark_cluster_tasks.png" width=850 height=480><br>
 
 At a high level, every Apache Spark application consists of a driver process that launches various parallel operations on executor JVMs.  These executors can run either on multiple machines in a cluster or on the same machine locally.  Driver programs access Apache Spark through a `SparkSession` object regardless of deployment model.  In Databricks, the **Notebook environment** is essentially the `driver` program.  This driver program contains the main loop for the current Spark application and creates distributed datasets on the cluster, then applies operations (transformations & actions) to those datasets.
 
@@ -36,7 +36,7 @@ At a high level, here is how an R session interacts with a Spark cluster:
 2. Launching R processes on executors - the process is key to achieve parallelism in SparkR and sparklyr
 
 <p align="center">
-<img src="https://databricks-yong-star.s3.amazonaws.com/graphics/SparkR_Architecture.png" width=400 height=300>
+<img src="https://databricks-yong-star.s3.amazonaws.com/graphics/SparkR_Architecture.png" width=500 height=300>
 </p>
 
 Beyond that SparkR and sparklyr are just packages that provide an interface to interact with Spark in an R process
