@@ -1,14 +1,23 @@
 # Persisting Work on Databricks
 Databricks clusters are treated as ephemeral computational resources - the default configuration is for the cluster to automatically terminate after 120 minutes of inactivity.  While this saves you a bundle on your cloud costs, it means you'll need to figure out where to persist your work long term.  
 
-#### DBFS
+**Contents**
+* [DBFS](#dbfs)
+* [Working with DBFS in R](#working-with-dbfs-in-r)
+  * [Unix Operations](#unix-operations)
+  * [Reading Data](#reading-data)
+  * [Saving and Loading Objects](#saving-and-loading-objects)
+* [Storage for Deep Learning](#storage-for-deep-learning)
+___
+
+## DBFS
 The Databricks file system, or [DBFS](https://docs.databricks.com/user-guide/databricks-file-system.html#databricks-file-system), is an abstraction that sits on top of any blob storage such as S3 or ADLS. It allows you to treat files in cloud storage as though they reside on the local file system of your laptop.  You can use the [Databricks CLI](https://docs.databricks.com/user-guide/dev-tools/databricks-cli.html#dbfs-cli) to interact with DBFS or you can use R.  The following examples will use R. 
 
-#### Working with DBFS in R
+## Working with DBFS in R
 
 By default, your working directory in an R session on Databricks will be on the driver node, **not** DBFS.  DBFS is accessible to all nodes in a cluster through the `/dbfs/` path.  Simply include it in the path to your files when using R.
 
-##### Unix Operations
+### Unix Operations
 ```R
 ## List files on DBFS
 system("ls /dbfs/", intern = T)
@@ -20,7 +29,7 @@ system("cp /dbfs/directory_A /dbfs/directory_B")
 system("cp /databricks/driver/file.txt /dbfs/file.txt")
 ```
 
-##### Reading Data
+### Reading Data
 
 **Note:** When reading into Spark, use the `dbfs:/` syntax.
 
@@ -35,7 +44,7 @@ df <- read.df('dbfs:/your/directory/file.csv', 'csv')
 df<-spark_read_csv( sc, 'df','dbfs:/your/directory/file.csv')
 ```
 
-##### Saving & Loading Objects
+### Saving & Loading Objects
 
 ```R
 ## Save a linear model to DBFS
@@ -48,5 +57,5 @@ model <- readRDS(file = "/dbfs/your/directory/model.RDS")
 
 You can read more about the SparkR and sparklyr data types in the `Spark - Distributed R sections` under `SparkR vs. sparklyr`.  We'll also talk more about DBFS in the package management section of this guide.
 
-# Using DBFS resources for Deep Learning 
+## Storage for Deep Learning
 Within DBFS there is a `/ml` directory. This directory was designed with an optimized FUSE mount specifically for deep learning and processing image data. To learn more, see the [high performance local APIs](https://docs.databricks.com/user-guide/databricks-file-system.html#high-performance-local-apis) section of the DBFS documentation.
