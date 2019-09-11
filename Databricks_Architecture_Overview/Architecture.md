@@ -3,7 +3,7 @@ As a foundation to working with R on Databricks, it's important to understand wh
 
 **Contents**
 
-* [Cluster Computing with Spark](#cluster-computing-with-spark)
+* [Cluster Computing with Spark and R](#cluster-computing-with-spark-and-R)
   * [Spark Architecture](#spark-architecture)
   * [R on Spark](#r-on-spark)
 * [Single Node R on Databricks](#single-node-r-on-databricks)
@@ -36,7 +36,7 @@ At a high level, here is how an R session interacts with a Spark cluster:
 2. Launching R processes on executors - the process is key to achieve parallelism in SparkR and sparklyr
 
 <p align="center">
-<img src="https://databricks-yong-star.s3.amazonaws.com/graphics/SparkR_Architecture.png" width=800 height=300>
+<img src="https://databricks-yong-star.s3.amazonaws.com/graphics/SparkR_Architecture.png" width=800 height=350>
 </p>
 
 Beyond that SparkR and sparklyr are just packages that provide an interface to interact with Spark in an R process
