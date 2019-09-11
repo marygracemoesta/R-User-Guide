@@ -22,7 +22,7 @@ The diagram below shows an example Apache Spark cluster, consisting of one `Driv
 
 The Driver sends **Tasks** to the empty slots on the Executors when there are remaining tasks to be completed:
 
-<img src="http://training.databricks.com/databricks_guide/gentle_introduction/spark_cluster_tasks.png" width=850 height=480><br>
+<img src="http://training.databricks.com/databricks_guide/gentle_introduction/spark_cluster_tasks.png" width=850 height=400><br>
 
 At a high level, every Apache Spark application consists of a driver process that launches various parallel operations on executor JVMs.  These executors can run either on multiple machines in a cluster or on the same machine locally.  Driver programs access Apache Spark through a `SparkSession` object regardless of deployment model.  In Databricks, the **Notebook environment** is essentially the `driver` program.  This driver program contains the main loop for the current Spark application and creates distributed datasets on the cluster, then applies operations (transformations & actions) to those datasets.
 
