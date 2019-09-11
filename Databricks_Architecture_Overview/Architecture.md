@@ -3,7 +3,7 @@ As a foundation to working with R on Databricks, it's important to understand wh
 
 **Contents**
 
-* [Cluster Computing with Spark and R](#cluster-computing-with-spark-and-R)
+* [Cluster Computing with Spark and R](#cluster-computing-with-spark-and-r)
   * [Spark Architecture](#spark-architecture)
   * [R on Spark](#r-on-spark)
 * [Single Node R on Databricks](#single-node-r-on-databricks)
@@ -47,7 +47,7 @@ If your data set will fit in memory on a single reasonably sized machine, you ma
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/images/single_node_cluster.png?raw=true">
 
-The architecture here is quite simple - a single virtual machine in the cloud with [Databricks Runtime](DBRlink).  While Spark is inaccessible in this architecture, you can still use many of the benefits of Databricks: RStudio, Notebooks, Libraries, and [DBFS](#https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/DBFS.md#dbfs) as the persistent storage layer. 
+The architecture here is quite simple - a single virtual machine in the cloud with [Databricks Runtime](DBRlink).  While Spark is inaccessible in this architecture, you can still use many of the benefits of Databricks: RStudio, Notebooks, Libraries, and [DBFS](https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/DBFS.md#dbfs) as the persistent storage layer. 
 
 # Single Node R vs. Distributed R
 The distinguishing difference between single node R and distributed R is parallelism. Single node R (i.e. anything written in base R, 
