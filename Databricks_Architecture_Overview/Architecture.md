@@ -18,7 +18,7 @@ If your data set will fit in memory on a single reasonably sized machine, you ma
 The architecture here is quite simple - a single virtual machine in the cloud with [Databricks Runtime](DBRlink).  While Spark is inaccessible in this architecture, you can still use many of the benefits of Databricks: RStudio, Notebooks, Libraries, and [DBFS](https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/DBFS.md#dbfs) as the persistent storage layer.  
 
 ## Cluster Computing with Spark and R 
-When the size of your data will no longer fit in memory on a single node, it's time to turn to Spark.  Spark is a distributed, in memory processing engine with a rich functionality for data engineering and data science that can scale to petabytes of data.  Luckily for R users, there are two APIs for accessing Spark - `SparkR` and `sparklyr`.  For now we will focus on the common architecture between the two, but if you want more detail on the differences between the two see [this section](linktocome).
+When the size of your data will no longer fit in memory on a single node, it's time to turn to Spark.  Spark is a distributed, in memory processing engine with a rich functionality for data engineering and data science that can scale to petabytes of data.  Luckily for R users, there are two APIs for accessing Spark - `SparkR` and `sparklyr`.  For now we will focus on the common architecture between the two, but if you want more detail on the differences between them see [this section](linktocome).
 
 ### Spark Architecture
 
@@ -34,11 +34,10 @@ Driver programs access Spark through a `SparkSession` object, which is already i
 
 The details of your Apache Spark application can be viewed in the `Spark Web UI`.  The web UI is accessible in Databricks by going to "Clusters" and then clicking on the "View Spark UI" link. Alternatively, you can click at the top left of a notebook where you would select the cluster to view its Spark Web UI.
 
-### R on Spark
+### Spark with R
 
-At a high level, here is how an R session interacts with a Spark cluster:
-
-1. R-JVM bridge in the driver - this bridge allows for R jobs to be submitted to a Databricks cluster
+Both `SparkR` and `sparklyr` are APIs to access the `SparkContext` and execute commands across a cluster from R.  Each package contains wrappers around the original Scala classes and functions that Spark was written in.  This means that when you use the APIs you are not actually running any R code on the worker nodes.  The R session on the driver communicates with the JVM to send commands out to the JVM processes on each worker.  
+1. R-JVM bridge in the driver - this bridge allows for an R user to submit commands to Spark.  
 2. Launching R processes on executors - the process is key to achieve parallelism in SparkR and sparklyr
 
 <p align="center">
