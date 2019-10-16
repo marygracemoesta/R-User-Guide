@@ -95,7 +95,7 @@ To get better performance we need to avoid doing all that work in the first plac
 
 ### Building a Library on DBFS
 
-All packages are installed into a _library_, which is a path on the file system.  You can check the what directories are recognized by R as libraries with `.libPaths()`.  
+All packages are installed into a _library_, which is located on a path in the file system.  You can check the what directories are recognized by R as libraries with `.libPaths()`.  
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/defaul_libpaths.png?raw=true"> 
 
