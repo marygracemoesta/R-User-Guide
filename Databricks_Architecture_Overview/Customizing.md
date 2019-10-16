@@ -147,7 +147,9 @@ dbutils.fs.put("/databricks/rscripts/my-r-script.sh", script, True)
 Note the path is `/databricks/rscripts/my-r-script.sh`.  This is what we will add to the _Init Script_ path in the Advanced Options section of the cluster UI.
 
 #### Modifying Rprofile in RStudio
-Customizing your Rprofile is great way to enhance your R experience.  You can recreate this experience on Databricks by leveraging an init script to modify your `Rprofile.site` file.  As a prerequisite, upload a R file containing the modifications you'd like to make to DBFS.  In this example the file is called `r_profile_changes.R`  Then run the following code in Databricks Notebook using Python:
+Customizing your Rprofile is great way to enhance your R experience.  You can recreate this experience on Databricks by leveraging an init script to modify your `Rprofile.site` file.  Essentially you will pipe an R script into the `Rprofile.site` file, appending changes to it.  **Note:**  This will only work on RStudio, not in an R Notebook.  
+
+As a prerequisite, upload a R file containing the modifications you'd like to make to DBFS.  In this example the file is called `r_profile_changes.R`  Then run the following code in Databricks Notebook using Python:
 
 ```python
 %python
