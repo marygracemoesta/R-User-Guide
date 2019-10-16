@@ -33,6 +33,8 @@ To work with RStudio on Databricks, you'll need to run the following code in a *
 
 ```python
 %python
+
+## Define the contents of the script
 script = """
   if [[ $DB_IS_DRIVER = "TRUE" ]]; then
     sudo apt-get update
@@ -55,3 +57,64 @@ dbutils.fs.put("/databricks/rstudio/rstudio-install.sh", script, True)
 ```
 
 Note the path is `/databricks/rstudio/rstudio-install.sh`.  This is what we will add to the _Init Script_ path in the Advanced Options section of the cluster UI.
+
+
+#### Apache Arrow Installation
+
+Apache Arrow is an open source project that provides a common in-memory format between different processes.  This is especially useful when moving data back and forth between Spark and R, as you would with [user defined functions](linktocome).  To enable Arrow with R on Databricks, the first step is to attach an init script to a cluster.  Using a Python cell in a Databricks Notebook, run the following cell:
+
+```python
+%python
+
+## Define contents of the script
+script = """
+#!/bin/bash
+sudo apt update
+sudo apt install -y -V apt-transport-https lsb-release
+curl https://dist.apache.org/repos/dist/dev/arrow/KEYS | sudo apt-key add -
+sudo tee /etc/apt/sources.list.d/apache-arrow.list <<APT_LINE
+deb [arch=amd64] https://dl.bintray.com/apache/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/ $(lsb_release --codename --short) main
+deb-src https://dl.bintray.com/apache/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/ $(lsb_release --codename --short) main
+APT_LINE
+sudo apt update
+sudo apt install -y -V libarrow-dev # For C++
+sudo apt install -y -V libarrow-glib-dev # For GLib (C)
+sudo apt install -y -V libgandiva-dev # For Gandiva C++
+sudo apt install -y -V libgandiva-glib-dev # For Gandiva GLib (C)
+sudo apt install -y -V libparquet-dev # For Apache Parquet C++
+sudo apt install -y -V libparquet-glib-dev # For Apache Parquet GLib (C
+"""
+
+## Create directory to save the script in
+dbutils.fs.mkdirs("/databricks/arrow")
+
+## Save the script to DBFS
+dbutils.fs.put("/databricks/arrow/arrow-install.sh", script, True)
+```
+
+#### Library Installation
+One quick way to install a list of packages on a cluster is through an init script.  At a certain point you may see long cluster startup times as R has to download, compile, and install the packages.  See the [Faster Package Loads](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/package_management.md#faster-package-loads) section for an alternative solution.
+
+Using a Python cell in a Databricks Notebook, run the following code.  
+
+```python
+%python
+
+## Define contents of script 
+script = """
+#!/bin/bash
+R --vanilla <<EOF 
+install.packages('forecast', repos="https://cran.microsoft.com/snapshot/2017-09-28/")
+install.packages('sparklyr', dependencies=TRUE, repos="https://cran.microsoft.com/snapshot/2017-09-28/")
+q()
+EOF
+"""
+
+## Create directory to save the script in
+dbutils.fs.mkdirs("/databricks/rlibs")
+
+## Save the script to DBFS
+dbutils.fs.put("/databricks/rlibs/r-library-install.sh", script, True)
+```
+
+Add your list of packages using `install.packages()` in the manner shown above.  
