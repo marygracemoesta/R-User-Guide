@@ -12,6 +12,7 @@ In addition to the various flavors of Databricks Runtime that can be selected at
   * [Apache Arrow Installation](#apache-arrow-installation)
   * [Library Installation](#library-installation)
   * [Running an R Script](#running-an-r-script)
+  * [Modifying Rprofile in RStudio](#modifying-rprofile)
 
 ____
 
@@ -144,3 +145,26 @@ dbutils.fs.put("/databricks/rscripts/my-r-script.sh", script, True)
 ```
 
 Note the path is `/databricks/rscripts/my-r-script.sh`.  This is what we will add to the _Init Script_ path in the Advanced Options section of the cluster UI.
+
+#### Modifying Rprofile in RStudio
+Customizing your Rprofile is great way to enhance your R experience.  You can recreate this experience on Databricks by leveraging an init script to modify your `Rprofile.site` file.  As a prerequisite, upload a R file containing the modifications you'd like to make to DBFS.  In this example the file is called `r_profile_changes.R`  Then run the following code in Databricks Notebook using Python:
+
+```python
+%python
+
+## Define contents of script
+script = """
+#!/bin/bash
+if [[ $DB_IS_DRIVER = "TRUE" ]]; then
+echo 'source("/dbfs/R/scripts/r_profile_changes.R")' >> /usr/lib/R/etc/Rprofile.site
+fi
+"""
+
+## Create directory to save the script in
+dbutils.fs.mkdirs("/databricks/rscripts")
+
+## Save the script to DBFS
+dbutils.fs.put("/databricks/rscripts/modify-rprofile.sh", script, True)
+```
+Note the path is `/databricks/rscripts/modify-rprofile.sh`.  This is what we will add to the _Init Script_ path in the Advanced Options section of the cluster UI.
+___
