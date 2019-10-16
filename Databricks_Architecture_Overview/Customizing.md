@@ -92,10 +92,12 @@ dbutils.fs.mkdirs("/databricks/arrow")
 dbutils.fs.put("/databricks/arrow/arrow-install.sh", script, True)
 ```
 
+Note the path is `/databricks/arrow/arrow-install.sh`. This is what we will add to the Init Script path in the Advanced Options section of the cluster UI.  For more details please see the [Apache Arrow with R](linktocome) section.
+
 #### Library Installation
 One quick way to install a list of packages on a cluster is through an init script.  At a certain point you may see long cluster startup times as R has to download, compile, and install the packages.  See the [Faster Package Loads](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/package_management.md#faster-package-loads) section for an alternative solution.
 
-Using a Python cell in a Databricks Notebook, run the following code.  
+Using a Python cell in a Databricks Notebook run the following code, making sure to add your list of packages using `install.packages()` as shown.
 
 ```python
 %python
@@ -117,4 +119,28 @@ dbutils.fs.mkdirs("/databricks/rlibs")
 dbutils.fs.put("/databricks/rlibs/r-library-install.sh", script, True)
 ```
 
-Add your list of packages using `install.packages()` in the manner shown above.  
+Note the path is `/databricks/rlibs/r-library-install.sh`.  This is what we will add to the _Init Script_ path in the Advanced Options section of the cluster UI.
+
+#### Running an R Script
+If you want to run an arbitrary R script on cluster startup, you can do that too. Using a Python cell in a Databricks Notebook, run the following code, replacing `<INSERT R SCRIPT>` with ... your R script!
+
+```python
+%python
+
+## Define contents of script 
+script = """
+#!/bin/bash
+R --vanilla <<EOF 
+<INSERT R SCRIPT>
+q()
+EOF
+"""
+
+## Create directory to save the script in
+dbutils.fs.mkdirs("/databricks/rscripts")
+
+## Save the script to DBFS
+dbutils.fs.put("/databricks/rscripts/my-r-script.sh", script, True)
+```
+
+Note the path is `/databricks/rscripts/my-r-script.sh`.  This is what we will add to the _Init Script_ path in the Advanced Options section of the cluster UI.
