@@ -1,7 +1,7 @@
 
 # Customizing with Init Scripts
 
-In addition to the various flavors of Databricks Runtime that can be selected at cluster creation, users can supply initialization scripts to bootstrap the environment in various ways.  This document will serve as a repository to easily access scripts that perform various tasks. 
+In addition to the various flavors of [Databricks Runtime](https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/DB_Runtime.md#databricks-runtimes) that can be selected at cluster creation, users can supply initialization scripts to bootstrap the environment in various ways.  This document will serve as a repository to easily access scripts that perform various tasks. 
 
 
 ##### Contents
