@@ -1,14 +1,38 @@
-# The Databricks Runtime
+# Databricks Runtimes
 
 **Contents**
 * [Overview of DBR](#overview-of-dbr)
-  * [General Optimizations](#general-optimizations)
   * [SparkR Optimization](#sparkr-optimization)
 * [List of Included R Packages](#list-of-included-r-packages)
 ___
 
-## List of Included R Packages
-Many R packages are natively included in the Databricks Runtime. 
+### Overview of DBR
+[Databricks Runtimes](https://docs.databricks.com/runtime/index.html#databricks-runtimes) are the set of core components that run on Databricks clusters.  These components include general [optimizations](https://docs.databricks.com/delta/optimizations/index.html#optimizations) to Delta Lake and Apache Spark, as well as pre-installed libraries for R, Python, and Scala/Java.  For instance, the [Machine Learning Runtime](https://docs.databricks.com/runtime/mlruntime.html#mlruntime) has stable versions of XGBoost, Tensorflow, and Pytorch installed and configured to work out of the box.  These components help make Databricks a platform to develop quickly, with minimal library setup and debugging required. 
+
+To learn more about what is in each runtime, it is worth reading the [release notes](https://docs.databricks.com/release-notes/runtime/supported.html#release-notes) for each version.  
+
+#### SparkR Optimization
+In addition to general optimizations included in DBR, there is also an optimization related to user defined functions in SparkR that is not available in open source.  
+
+User defined functions are a powerful way to scale out arbitrary R code using Spark.  This process involves communicating R commands from the driver node to workers across the cluster using `gapply()`, `dapply()`, or `spark.lapply()`.  However, during these communications a bottleneck is created when serializing and deserializing commands from the Spark process to R and vice versa.  Performance suffers and the utility of UDFs is weakened.  Here you can see the ser/deserialization operations to and from R on a worker node:
+
+<img src="https://databricks.com/wp-content/uploads/2018/08/image1-2.png">
+
+As described in [the official blog post](https://databricks.com/blog/2018/08/15/100x-faster-bridge-between-spark-and-r-with-user-defined-functions-on-databricks.html), 
+
+> _The data gets serialized twice and deserialized twice in total, all of which are row-wise.  By vectorizing data serialization and deserialization in Databricks Runtime 4.3, we encode and decode all the values of a column at once. This eliminates the primary bottleneck which is row-wise serialization, and significantly improves SparkR’s UDF performance. Also, the benefit from the vectorization is more drastic for larger datasets._
+
+Here is one example of the performance improvement over open source Spark using `gapply()`:
+
+<img src="https://databricks.com/wp-content/uploads/2018/08/image4-2.png">
+
+More details can be found in the blog.
+
+This optimization is similar to what can be achieved by enabling Apache Arrow for user defined functions with Spark and R.  The difference is that as of this writing, the SparkR optimization in DBR works out of the box. 
+
+### List of Included R Packages
+
+You can find the list of R packages included in a runtime by inspecting the [release notes](https://docs.databricks.com/release-notes/runtime/6.0.html#rlibraries60).  Here is an example from DBR 5.5:
 
 | Library      | Version  | Library     | Version    | Library       | Version   |
 |--------------|----------|-------------|------------|---------------|-----------|
