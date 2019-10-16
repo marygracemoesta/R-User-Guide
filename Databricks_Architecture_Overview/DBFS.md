@@ -11,11 +11,13 @@ Databricks clusters are treated as ephemeral computational resources - the defau
 ___
 
 ## DBFS
-The Databricks file system, or [DBFS](https://docs.databricks.com/user-guide/databricks-file-system.html#databricks-file-system), is an abstraction that sits on top of any blob storage such as S3 or ADLS. It allows you to treat files in cloud storage as though they reside on the local file system of your laptop.  You can use the [Databricks CLI](https://docs.databricks.com/user-guide/dev-tools/databricks-cli.html#dbfs-cli) to interact with DBFS or you can use R.  The following examples will use R. 
+The Databricks file system, or [DBFS](https://docs.databricks.com/user-guide/databricks-file-system.html#databricks-file-system), is an abstraction that sits on top of any blob storage such as S3 or ADLS. It allows you to treat files in cloud storage as though they reside on the local file system of your laptop.  Whether you are working in a Databricks Notebook or the hosted instance of RStudio Server, it is recommended to use DBFS as the storage layer for your work.  
+
+You can use the [Databricks CLI](https://docs.databricks.com/user-guide/dev-tools/databricks-cli.html#dbfs-cli) to interact with DBFS or you can use R.  The following examples will use R. 
 
 ## Working with DBFS in R
 
-By default, your working directory in an R session on Databricks will be on the driver node, **not** DBFS.  DBFS is accessible to all nodes in a cluster through the `/dbfs/` path.  Simply include it in the path to your files when using R.
+By default, your working directory in an R session on Databricks will be on the driver node, **not** DBFS.  DBFS is accessible to all nodes in a cluster through the `/dbfs/` path.  Simply include it in the path to your files when using R.  Also note that you can browse to the `/dbfs/` directory using the file explorer in RStudio.
 
 ### Unix Operations
 ```R
