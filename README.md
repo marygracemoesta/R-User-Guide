@@ -11,14 +11,14 @@ ____
 ##### Contents
 
 * Getting Started
-  * [Databricks Architecture Overview](https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/Architecture.md)
-  * [Databricks Runtimes](https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/DB_Runtime.md)
-  * [Databricks File System (DBFS)](https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/DBFS.md)
+  * [Databricks Architecture Overview](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/Architecture.md)
+  * [Databricks Runtimes](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/DB_Runtime.md)
+  * [Databricks File System (DBFS)](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/DBFS.md)
 * Developing on Databricks
   * [Package Management](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/package_management.md)
   * [Databricks Notebooks](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/db_notebooks.md)
   * [RStudio Integration](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/RStudio_integrations.md)
-  * [Customizing With Init Scripts](https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/Customizing.md)
+  * [Customizing With Init Scripts](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/Customizing.md)
 * Spark: Distributed R
   * [Single Node vs. Distributed R](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/single_v_distributed.md)
   * [`sparklyr` vs. `SparkR`](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/sparklyr_v_sparkR.md)
