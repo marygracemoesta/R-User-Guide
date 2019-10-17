@@ -17,17 +17,20 @@ Let's take an example to begin understanding the differences between the two API
 
 ```r
 ## Read airlines dataset from 2008
-airlinesDF <- SparkR::read.df("/databricks-datasets/asa/airlines/2008.csv", source = "csv", inferSchema = "true", header = "true")
+airlinesDF <- SparkR::read.df("/databricks-datasets/asa/airlines/2008.csv", 
+                               source = "csv", 
+                               inferSchema = "true", 
+                               header = "true")
 
 ## Read airlines dataset from 2007
-airlines_sdf <- sparklyr::spark_read_csv(sc, name = 'airlines', path = "/databricks-datasets/asa/airlines/2007.csv")
+airlines_sdf <- sparklyr::spark_read_csv(sc, name = 'airlines', 
+                                         path = "/databricks-datasets/asa/airlines/2007.csv")
 
 ## Check the class of each loaded dataset
 cat(c("Class of SparkR object:\n", class(airlinesDF), "\n\n"))
 cat(c("Class of sparklyr object:\n", class(airlines_sdf)))
 
-```
-```bash
+## Output
 Class of SparkR object:
   SparkDataFrame 
 
