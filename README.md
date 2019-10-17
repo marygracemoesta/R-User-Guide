@@ -1,8 +1,10 @@
 # R on Databricks: A User Guide
 
-R is widely used by data teams in every sector of the economy.  It enjoys a vibrant ecosystem of open source packages as well as not one, but two APIs for working with Apache Spark.  This opens up the tantalizing prospect of scaling to hundreds of machines executing R code in parallel.   As Databricks grows in popularity and usage across market segments - especially Enterprise -  R users face a somewhat steep learning curve for both Spark and working in the cloud generally.  This user guide is designed to facilitate a smooth transition to productivity for R developers using Databricks.  Each section has examples in R or discusses a particular feature as it relates to R. 
+R is widely used by data teams in every sector of the economy.  It enjoys a vibrant ecosystem of open source packages including two APIs for working with Apache Spark.  This opens up the tantalizing prospect of scaling R programs to hundreds of machines executing in parallel.   
 
-The flow of each section will progress from basic concepts through to advanced tips and functionality.  As such, this guide can be used as a reference and will complement the [official Databricks documentation](https://docs.databricks.com).  Please reach out to us with questions or suggestions for improvement.  We hope it enables you to unlock the full potential of R on Databricks!  
+As Databricks grows in popularity and usage across market segments - especially Enterprise -  R users face a somewhat steep learning curve for both Spark and working in the cloud generally.  This user guide is designed to facilitate a smooth transition to productivity for R developers using Databricks.  Each section has examples in R or discusses a particular feature as it relates to R. 
+
+The flow of a section will progress from basic concepts through to advanced tips and functionality.  As such, this guide can be used as a reference and will complement the [official Databricks documentation](https://docs.databricks.com).  Please reach out to us with questions or suggestions for improvement.  We hope it enables you to unlock the full potential of R on Databricks!  
 
 ____
 
