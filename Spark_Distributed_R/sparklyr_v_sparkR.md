@@ -2,6 +2,11 @@
 
 R users find themselves in the unique position of having to choose between two APIs for Spark.  In this section we will detail some of the commonalities and differences between them.  Tempting as it may be to pick and choose function calls from both into one script, it makes code more difficult to read and maintain.  Therefore it is recommended as a best practice to choose one API to develop your Spark application in R.  
 
+_Contents_
+* [Stewardship](#stewardship)
+* [API Differences](#api-differences)
+* [API Interoperability](#api-interoperability)
+
 ##### Stewardship
 A key difference between the two packages lies in their origin and authorship.  
 
@@ -47,7 +52,8 @@ sparklyr::sdf_pivot(airlinesDF, DepDelay ~ UniqueCarrier)
 
 
 # output:
-Error : Unable to retrieve a Spark DataFrame from object of class SparkDataFrame (NOTE: If you wish to use SparkR, import it by calling 'library(SparkR)'.)
+Error : Unable to retrieve a Spark DataFrame from object of class SparkDataFrame 
+(NOTE: If you wish to use SparkR, import it by calling 'library(SparkR)'.)
 ```
 ```r
 ## Function from SparkR on sparklyr object
@@ -61,7 +67,7 @@ Error in (function (classes, fdef, mtable)  :
 
 As you might expect, calling `SparkR` functions on `sparklyr` objects and vice versa can lead to unexpected -- and undesirable -- behavior. Why is this?
 
-`sparklyr` translates `dplyr` functions like `arrange()` into a SQL query plan that is used by SparkSQL.  This is not the case with `SparkR`, which has functions for SparkSQL tables and Spark DataFrames. As such, the interoperability between the two APIs is limited and it is generally not recommended to go back and forth between them in the same job.
+`sparklyr` translates `dplyr` functions like `arrange()` into a SQL query plan that is used by SparkSQL.  This is not the case with `SparkR`, which has functions for SparkSQL tables and Spark DataFrames.  At the end of the day DataFrame operations are translated into a query plan for SparkSQL, but the classes used to build those plans are different in each package.  This limits API interoperability and is one of the reasons why we don't recommended going back and forth between them in the same job.
 
 ##### API Interoperability
 At this point you may be wondering if there is any space in the APIs where they can work together?  There is, and that overlap in the venn diagram of these two packages is SparkSQL.
@@ -70,7 +76,16 @@ Recall that when we loaded the airlines data from 2007 into a `tbl_spark`, we sp
 
 ```r
 ## Use SparkR to query the 'airlines' table loaded into SparkSQL through sparklyr
-top10delaysDF <- SparkR::sql("SELECT UniqueCarrier, DepDelay, Origin FROM airlines WHERE DepDelay NOT LIKE 'NA' ORDER BY DepDelay DESC LIMIT 10")
+top10delaysDF <- SparkR::sql("SELECT 
+                              UniqueCarrier, 
+                              DepDelay, 
+                              Origin 
+                              FROM 
+                              airlines 
+                              WHERE 
+                              DepDelay NOT LIKE 'NA' 
+                              ORDER BY DepDelay 
+                              DESC LIMIT 10")
 
 ## Check class of result
 cat(c("Class of top10delaysDF: ", class(top10delaysDF), "\n\n"))
