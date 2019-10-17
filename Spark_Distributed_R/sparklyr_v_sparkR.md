@@ -7,7 +7,7 @@ _Contents_
 * [API Differences](#api-differences)
 * [API Interoperability](#api-interoperability)
 
-##### Stewardship
+#### Stewardship
 A key difference between the two packages lies in their origin and authorship.  
 
 `SparkR` is the 'official' package and is documented at [spark.apache.org](https://spark.apache.org/docs/latest/sparkr.html).  It was built by the Spark community and developers from Databricks.  As such it adheres closely to Scala classes and the DataFrame API.
@@ -16,7 +16,7 @@ A key difference between the two packages lies in their origin and authorship.
 
 Both libraries are highly capable of working with big data in R - as of Oct. 2019 their feature sets are more or less at parity.
 
-##### API Differences
+#### API Differences
 
 Let's take an example to begin understanding the differences between the two APIs more deeply.  In this case we'll read CSV files into Spark using both `sparklyr` and `SparkR`, then compare the classes of the two.  **Note:**  In these examples we will explicitly reference the package used for each function in order to avoid confusion.
 
@@ -69,7 +69,7 @@ As you might expect, calling `SparkR` functions on `sparklyr` objects and vice v
 
 `sparklyr` translates `dplyr` functions like `arrange()` into a SQL query plan that is used by SparkSQL.  This is not the case with `SparkR`, which has functions for SparkSQL tables and Spark DataFrames.  At the end of the day DataFrame operations are translated into a query plan for SparkSQL, but the classes used to build those plans are different in each package.  This limits API interoperability and is one of the reasons why we don't recommended going back and forth between them in the same job.
 
-##### API Interoperability
+#### API Interoperability
 At this point you may be wondering if there is any space in the APIs where they can work together?  There is, and that overlap in the venn diagram of these two packages is SparkSQL.
 
 Recall that when we loaded the airlines data from 2007 into a `tbl_spark`, we specified the table name _airlines_. This table is registered with SparkSQL and can be referenced using the `sql()` function from `SparkR`. Executing SQL queries this way will return a Spark DataFrame:
@@ -112,5 +112,5 @@ Top 10 Airline Delays for 2007:
 10            AA      993    MSY
 ```
 
-##### Further Reading
+#### Further Reading
 To learn more about working with these tables, see the [Working With Spark Tables](linktocome) section. Still, we don't recommend taking this approach. Make your life simple and build your job around one API!
