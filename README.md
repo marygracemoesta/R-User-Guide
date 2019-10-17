@@ -18,7 +18,7 @@ ____
   * [Package Management](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/package_management.md)
   * [Databricks Notebooks](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/db_notebooks.md)
   * [RStudio Integration](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/RStudio_integrations.md)
-  * [Customizing With Init Scripts](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/Customizing.md)
+  * [Customizing With Init Scripts](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md)
 * Spark: Distributed R
   * [Single Node vs. Distributed R](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/single_v_distributed.md)
   * [`sparklyr` vs. `SparkR`](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/sparklyr_v_sparkR.md)
