@@ -1,4 +1,6 @@
 
+## Getting Started on Databricks
+
 ##### Contents
 
 * [Databricks Architecture Overview](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/Architecture.md)
