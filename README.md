@@ -10,30 +10,30 @@ ____
 
 ##### Contents
 
-* Getting Started
+* [**Getting Started**](https://github.com/marygracemoesta/R-User-Guide/tree/master/Getting_Started)
   * [Databricks Architecture Overview](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/Architecture.md)
   * [Databricks Runtimes](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/DB_Runtime.md)
   * [Databricks File System (DBFS)](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/DBFS.md)
-* Developing on Databricks
+* [**Developing on Databricks**](https://github.com/marygracemoesta/R-User-Guide/tree/master/Developing_on_Databricks)
   * [Package Management](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/package_management.md)
   * [Databricks Notebooks](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/db_notebooks.md)
   * [RStudio Integration](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/RStudio_integrations.md)
   * [Customizing With Init Scripts](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md)
-* Spark: Distributed R
+* [**Spark: Distributed R**](https://github.com/marygracemoesta/R-User-Guide/tree/master/Spark_Distributed_R)
   * [Single Node vs. Distributed R](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/single_v_distributed.md)
   * [`sparklyr` vs. `SparkR`](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/sparklyr_v_sparkR.md)
   * [Streaming](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/streaming.md)
   * [User-Defined Functions (UDFS)](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/udfs.md)
   * [Apache Arrow](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/arrow.md)
-* Running R in Production
+* [**R in Production**](https://github.com/marygracemoesta/R-User-Guide/tree/master/R_in_Production)
   * Jobs
   * Notebook Workflows
   * REST API
-* MLflow
+* [**MLflow**](https://github.com/marygracemoesta/R-User-Guide/tree/master/MLflow)
   * [Tracking](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/tracking.md)
   * [Models & Model Deployment](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/models.md)
   * [Projects](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/projects.md)
-* [Delta Lake](https://github.com/marygracemoesta/R-User-Guide/blob/master/Delta_Lake/deltaLake.md)
+* [**Delta Lake**](https://github.com/marygracemoesta/R-User-Guide/blob/master/Delta_Lake/deltaLake.md)
   * Time Travel
   
   ___
