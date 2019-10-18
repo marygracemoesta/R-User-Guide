@@ -15,17 +15,17 @@ RStudio offers a polished experience for developing R programs that is impossibl
  ___
  
 #### Hosted RStudio Server
-The simplest way to get up and running with RStudio on Databricks is to install the open source version of Rstudio Server on the driver node of a cluster.  
+The simplest way to use RStudio with Databricks is to install the open source version of Rstudio Server on the driver node of a cluster, as illustrated below.
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/rstudioServerarchitecture.png?" raw = true>
 
-This is achieved by attaching the [RStudio Server installation script](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#rstudio-server-installation) to your cluster.  Full details for setting up hosted Rstudio Server can be found in the official docs [here](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#get-started-with-rstudio-server-open-source). **Note:** If you have a license for RStudio Server Pro you can [set that up](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#install-rstudio-server-pro) as well.
+This is achieved by attaching the [RStudio Server installation script](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#rstudio-server-installation) to your cluster.  Full details for setting up hosted Rstudio Server can be found in the official docs [here](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#get-started-with-rstudio-server-open-source).  If you have a license for RStudio Server Pro you can [set that up](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#install-rstudio-server-pro) as well.
 
 After the init script has been installed on the cluster, login information can be found in the `Apps` tab of the cluster UI:
 
 <img src ="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/Rstudio_integration.png?" height = 300 width = 2000>
 
-The hosted RStudio experience should feel nearly identical to your desktop experience.  In fact, you can also customize the environment further by supplying an additional init script to [modify the `Rprofile.site` file](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#modifying-rprofile-in-rstudio).  One major limitation is the inability to host Shiny Apps today, though this is on the roadmap for 2020.
+The hosted RStudio experience should feel nearly identical to your desktop experience.  In fact, you can also customize the environment further by supplying an additional init script to [modify `Rprofile.site`](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#modifying-rprofile-in-rstudio).  One major limitation is the inability to host Shiny Apps today, though this is on the roadmap for 2020.
 
 ##### Accessing Spark
 
