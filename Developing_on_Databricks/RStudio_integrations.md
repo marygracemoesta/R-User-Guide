@@ -4,13 +4,15 @@ RStudio offers a polished experience for developing R programs that is impossibl
 
 **Contents**
 
-- [Hosted RStudio Server](#hosted-rstudio-server)
- - [Viewing Spark Tables](#viewing-spark-tables)
- - [Persisting Work](#persisting-work)
- - [Git Integration](#git-integration)
-- [RStudio Desktop with Databricks Connect](#rstudio-desktop-with-databricks-connect)
- - [Setup](#connecting-to-spark)
- - [Limitations](#limitations)
+* [Hosted RStudio Server](#hosted-rstudio-server)
+  * [Viewing Spark Tables](#viewing-spark-tables)
+  * [Persisting Work](#persisting-work)
+  * [Git Integration](#git-integration)
+* [RStudio Desktop with Databricks Connect](#rstudio-desktop-with-databricks-connect)
+  * [Setup](#connecting-to-spark)
+  * [Limitations](#limitations)
+ 
+ ___
  
 #### Hosted RStudio Server
 The simplest way to get up and running with RStudio on Databricks is to install the open source version of Rstudio Server on a cluster.  This is achieved by attaching Details for the Rstudio server itegration setup can be found [here](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#get-started-with-rstudio-server-open-source). Please note that the setup varies by Tier (i.e. setup for Rstudio Server Open Source varies from setup with Rstudio Server Pro). 
