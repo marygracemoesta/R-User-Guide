@@ -14,7 +14,7 @@ RStudio offers a polished experience for developing R programs that is impossibl
  
  ___
  
-#### Hosted RStudio Server
+### Hosted RStudio Server
 The simplest way to use RStudio with Databricks is to install the open source version of Rstudio Server on the driver node of a cluster, as illustrated below.
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/rstudioServerarchitecture.png?" raw = true>
@@ -27,7 +27,7 @@ After the init script has been installed on the cluster, login information can b
 
 The hosted RStudio experience should feel nearly identical to your desktop experience.  In fact, you can also customize the environment further by supplying an additional init script to [modify `Rprofile.site`](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#modifying-rprofile-in-rstudio).  One major limitation is the inability to host Shiny Apps today, though this is on the roadmap for 2020.
 
-##### Accessing Spark
+#### Accessing Spark
 
 _(This section is taken from [Databricks documentation](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#get-started-with-rstudio-server-open-source).)_
 
@@ -58,15 +58,33 @@ Tables from the `default` database will be shown, but you can switch the databas
 tbl_change_db(sc, "not_a_default_db")
 ```
 
-##### Persisting Work
+#### Persisting Work
 
-##### Git Integration
+Databricks clusters are treated as ephemeral computational resources - the default configuration is for the cluster to automatically terminate after 120 minutes of inactivity. This applies to your hosted instance of RStudio as well.  To persist your work you'll need to use [DBFS](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/DBFS.md) or integrate with version control.  
 
-#### RStudio Desktop with Databricks Connect
+By default, the working directory in RStudio will be on the driver node.  To change it to a path on DBFS, simply set it with `setwd()`.
 
-##### Setup
+```r
+setwd("/dbfs/my_folder_that_will_persist")
+```
 
-##### Limitations
+You can also access DBFS in the File Explorer.  Click on the `...` all the way to the right and enter `/dbfs/` at the prompt.
+
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/rstudio-gotofolder.png" height = 300 width = 450>
+
+Then the contents of DBFS will be available:
+
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/file_explorer_rstudio_dbfs.png" height=300 width=450>
+
+You can store RStudio Projects on DBFS and any other arbitrary file.  When your cluster is terminated at the end of your session, the work will be there for you when you return.
+
+#### Git Integration
+
+### RStudio Desktop with Databricks Connect
+
+#### Setup
+
+#### Limitations
 
 ## Rstudio Desktop Integration
 Databricks also supports integration with Rstudio Desktop using Databricks Connect. Please refer to the [PDF](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/DB%20Connect%20with%20RStudio%20Dekstop.pdf) For step by step instructions. 
