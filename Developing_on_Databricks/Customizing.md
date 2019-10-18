@@ -22,7 +22,7 @@ An initialization script is simply a bash script on DBFS that is executed at clu
 
 Once you have the script and are ready to attach it to a cluster, you'll need to edit the Advanced Options section of the cluster UI.  Under the _Init Scripts_ tab, you'll be able to specify a path to the script on DBFS.  
 
-<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/images/init_script_example.png?raw=true" height=600 width=500>
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/images/init_script_example.png?raw=true" height=600 width=500>
 
 Now the cluster will run the script every time it is restarted.
 
