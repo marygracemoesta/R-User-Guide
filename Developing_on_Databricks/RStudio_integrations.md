@@ -1,8 +1,8 @@
 ## Rstudio Integrations
 
-RStudio offers a polished experience for developing R programs that is impossible to reproduce in a notebook.  Recognizing this fact, Databricks offers two choices for sticking with your favorite IDE.
+RStudio offers a polished experience for developing R programs that is impossible to reproduce in a notebook.  Databricks offers two choices for sticking with your favorite IDE - hosted in the cloud or on your local machine.
 
-Contents:
+**Contents**
 
 - [Hosted RStudio Server](#hosted-rstudio-server)
  - [Viewing Spark Tables](#viewing-spark-tables)
