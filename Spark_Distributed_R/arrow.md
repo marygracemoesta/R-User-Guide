@@ -53,7 +53,9 @@ bench::press(rows = c(10^7), {
     } else NULL, iterations = 4, check = FALSE)
 })
 ```
+
 _Results:_
+
 | condition  | rows       | time    |
 |------------|------------|---------|
 | arrow_on   | 10,000,000 | 5.19sec |
@@ -74,7 +76,9 @@ bench::press(rows = c(5 * 10^7), {
     } else NULL, iterations = 4, check = FALSE)
 })
 ```
+
 _Results:_
+
 | condition  | rows       | time    |
 |------------|------------|---------|
 | arrow_on   | 50,000,000 | 15.5sec |
@@ -98,7 +102,9 @@ bench::press(rows = c(10^6), {
     } else NULL, iterations = 4, check = FALSE)
 })
 ```
+
 _Results:_
+
 | condition  | rows       | time    |
 |------------|------------|---------|
 | arrow_on   | 100,000    | 4.16sec |
