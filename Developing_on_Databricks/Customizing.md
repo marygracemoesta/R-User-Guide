@@ -93,7 +93,7 @@ dbutils.fs.mkdirs("/databricks/arrow")
 dbutils.fs.put("/databricks/arrow/arrow-install.sh", script, True)
 ```
 
-Note the path is `/databricks/arrow/arrow-install.sh`. This is what we will add to the Init Script path in the Advanced Options section of the cluster UI.  For more details please see the [Apache Arrow with R](linktocome) section.
+Note the path is `/databricks/arrow/arrow-install.sh`. This is what we will add to the Init Script path in the Advanced Options section of the cluster UI.  For more details please see the [Apache Arrow with R](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/arrow.md) section.
 
 #### Library Installation
 One quick way to install a list of packages on a cluster is through an init script.  At a certain point you may see long cluster startup times as R has to download, compile, and install the packages.  See the [Faster Package Loads](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/package_management.md#faster-package-loads) section for an alternative solution.
