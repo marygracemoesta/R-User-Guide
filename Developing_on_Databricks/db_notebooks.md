@@ -1,9 +1,16 @@
-# Using R and Databricks Notebooks 
-When a Databricks notebook is created, there are various options for selecting a default language:
-- python
-- SQL
-- scala
-- R
+
+ ## Databricks Notebooks
+ 
+ Databricks notebooks allows for a variety of defualt languages:
+ - R
+ - SQL
+ - Python
+ - Scala
+ Selecting R as the default language upon notebook creation is one way to devlop R code on Databricks. 
+ <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/R_default.png?" raw = true)>
+ 
+You can also use Databricks [magic commands](https://docs.databricks.com/user-guide/notebooks/notebook-use.html#mix-languages) to write R code in a notebook where the default language is not R.
+<img src = "https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/R_magic_command.png?" raw = true>
 
 # Databricks Utility Functions
 Databricks utiltiy functions, often called dbutils, are a set of utility functions that live inside Databricks notebooks to
