@@ -29,6 +29,35 @@ The hosted RStudio experience should feel nearly identical to your desktop exper
 
 ##### Accessing Spark
 
+_(This section is taken from [Databricks documentation](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#get-started-with-rstudio-server-open-source).)_
+
+From the RStudio UI, you can import the SparkR package and set up a SparkR session to launch Spark jobs on your cluster.
+
+```r
+library(SparkR)
+sparkR.session()
+```
+
+You can also attach the sparklyr package and set up a Spark connection.
+
+```r
+SparkR::sparkR.session()
+library(sparklyr)
+sc <- spark_connect(method = "databricks")
+```
+
+This will display the tables registered in the metastore.  
+
+<img src="https://docs.databricks.com/_images/rstudiosessionuisparklyr.png" height=300 width=420>
+
+
+Tables from the `default` database will be shown, but you can switch the database using `sparklyr::tbl_change_db()`.
+
+```r
+## Change from default database to non-default database
+tbl_change_db(sc, "not_a_default_db")
+```
+
 ##### Persisting Work
 
 ##### Git Integration
