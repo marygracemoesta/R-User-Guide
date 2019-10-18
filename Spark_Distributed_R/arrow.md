@@ -28,5 +28,33 @@ In order for Arrow to work properly, complete the following steps:
 2. Install `arrow` from CRAN in the Cluster UI.
 3. Install `sparklyr` from CRAN in the Cluster UI. 
 
-
 #### Arrow Benchmarks
+The code for these benchmarks was taken from RStudio and run on Databricks Runtime 5.5 LTS.  They are divided into three tasks:
+
+- Copying data from R to Spark
+- Collecting data from Spark to R
+- User defined functions with `sparklyr::spark_apply()`
+
+**Note:** They do take 20-60 minutes to run.
+
+```r
+## First Benchmark:  Copying data from R to Spark
+bench::press(rows = c(10^7), {
+  bench::mark(
+    arrow_on = {
+      library(arrow)
+      sparklyr_df <<- copy_to(sc, data.frame(y = 1:rows), overwrite = T)
+    },
+    arrow_off = if (rows <= 10^7) {
+      if ("arrow" %in% .packages()) detach("package:arrow")
+      sparklyr_df <<- copy_to(sc, data.frame(y = 1:rows), overwrite = T)
+    } else NULL, iterations = 4, check = FALSE)
+})
+
+
+# output:
+# A tibble: 2 x 14
+  expression     rows      min   median `itr/sec` mem_alloc `gc/sec` n_itr  n_gc total_time result          memory                   time     gc              
+  <bch:expr>    <dbl> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl> <int> <dbl>   <bch:tm> <list>          <list>                   <list>   <list>          
+1 arrow_on   10000000    5.19s    5.58s   0.149     292.8MB    0.186     4     5      26.8s <S3: tbl_spark> <Rprofmem [5,029 × 3]>   <bch:tm> <tibble [4 × 3]>
+2 arrow_off  10000000    3.95m    4.03m   0.00414    2.12GB    0.403     4   390      16.1m <S3: tbl_spark> <Rprofmem [848,569 × 3]> <bch:tm> <tibble [4 × 3]>
