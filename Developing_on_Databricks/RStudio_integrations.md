@@ -70,11 +70,11 @@ setwd("/dbfs/my_folder_that_will_persist")
 
 You can also access DBFS in the File Explorer.  Click on the `...` all the way to the right and enter `/dbfs/` at the prompt.
 
-<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/rstudio-gotofolder.png" height = 300 width = 450>
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/rstudio-gotofolder.png" height = 250 width = 450>
 
 Then the contents of DBFS will be available:
 
-<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/file_explorer_rstudio_dbfs.png" height=300 width=450>
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/file_explorer_rstudio_dbfs.png" height=250 width=450>
 
 You can store RStudio Projects on DBFS and any other arbitrary file.  When your cluster is terminated at the end of your session, the work will be there for you when you return.
 
