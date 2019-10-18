@@ -23,7 +23,7 @@ This is achieved by attaching the [RStudio Server installation script](https://g
 
 After the init script has been installed on the cluster, login information can be found in the `Apps` tab of the cluster UI:
 
-<img src ="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/Rstudio_integration.png?" height = 300 width = 2000>
+<img src ="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/Rstudio_integration.png?" height = 275 width = 2000>
 
 The hosted RStudio experience should feel nearly identical to your desktop experience.  In fact, you can also customize the environment further by supplying an additional init script to [modify `Rprofile.site`](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#modifying-rprofile-in-rstudio).  One major limitation is the inability to host Shiny Apps today, though this is on the roadmap for 2020.
 
