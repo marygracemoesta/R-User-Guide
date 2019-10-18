@@ -1,7 +1,7 @@
 
 ## Developing on Databricks
 
-Understand your development, package management, and cluster customization options for R.
+Understand the development, package management, and cluster customization options for R.
 
   * [Databricks Notebooks](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/db_notebooks.md)
   * [RStudio Integration](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/RStudio_integrations.md)  
