@@ -1,26 +1,34 @@
-# Rstudio Integrations
-Witin Databricks there are 3 different ways to write R:
- - Within Databricks notebooks
- - Integration withe Rstudio Server
- - Using Databricks connect to integrate with Rstudio desktop 
- 
- ## Writing R in Databricks Notebooks
- Databricks notebooks allows for a variety of defualt languages:
- - R
- - SQL
- - Python
- - Scala
- Selecting R as the default language upon notebook creation is one way to devlop R code on Databricks. 
- <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/R_default.png?" raw = true)>
- 
-You can also use Databricks [magic commands](https://docs.databricks.com/user-guide/notebooks/notebook-use.html#mix-languages) to write R code in a notebook where the default language is not R.
-<img src = "https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/R_magic_command.png?" raw = true>
+## Rstudio Integrations
 
-## Integration With Rstudio Server
-Databricks has a native integration with Rstudio Server. Details for the Rstudio server itegration setup can be found [here](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#get-started-with-rstudio-server-open-source). Please note that the setup varies by Tier (i.e. setup for Rstudio Server Open Source varies from setup with Rstudio Server Pro). 
+RStudio offers a polished experience for developing R programs that is impossible to reproduce in a notebook.  Recognizing this fact, Databricks offers two choices for sticking with your favorite IDE.
+
+Contents:
+
+- [Hosted RStudio Server](#hosted-rstudio-server)
+ - [Viewing Spark Tables](#viewing-spark-tables)
+ - [Persisting Work](#persisting-work)
+ - [Git Integration](#git-integration)
+- [RStudio Desktop with Databricks Connect](#rstudio-desktop-with-databricks-connect)
+ - [Setup](#connecting-to-spark)
+ - [Limitations](#limitations)
+ 
+#### Hosted RStudio Server
+The simplest way to get up and running with RStudio on Databricks is to install the open source version of Rstudio Server on a cluster.  This is achieved by attaching Details for the Rstudio server itegration setup can be found [here](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#get-started-with-rstudio-server-open-source). Please note that the setup varies by Tier (i.e. setup for Rstudio Server Open Source varies from setup with Rstudio Server Pro). 
 
 Once the intit script has been installed on the cluster, login information can be found in the `Apps` tab of the cluster
 <img src ="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/Rstudio_integration.png?" raw = true>
+
+##### Viewing Spark Tables
+
+##### Persisting Work
+
+##### Git Integration
+
+#### RStudio Desktop with Databricks Connect
+
+##### Setup
+
+##### Limitations
 
 ## Rstudio Desktop Integration
 Databricks also supports integration with Rstudio Desktop using Databricks Connect. Please refer to the [PDF](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/DB%20Connect%20with%20RStudio%20Dekstop.pdf) For step by step instructions. 
