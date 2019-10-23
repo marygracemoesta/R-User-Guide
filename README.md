@@ -6,6 +6,8 @@ As Databricks grows in popularity and usage across market segments - especially 
 
 The flow of a section will progress from basic concepts through to advanced tips and functionality.  As such, this guide can be used as a reference and will complement the [official Databricks documentation](https://docs.databricks.com).  Please reach out to us with questions or suggestions for improvement.  We hope it enables you to unlock the full potential of R on Databricks!  
 
+**Note: Many pages are currently unfinished, but we are adding content every week and hope to complete the guide in 2019.**
+
 ____
 
 ##### Contents
