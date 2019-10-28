@@ -17,7 +17,7 @@ For storage, Databricks will create a default blob storage bucket that can be us
 
 *ETL & The Data Lake*
 
-Streaming and static data sources can be extracted from their sources and ingested into the platform using the petabyte scalability of Spark.  Land **all** of your raw data in reliable and performant [Delta Lake](https://github.com/marygracemoesta/R-User-Guide/blob/master/Delta_Lake/deltaLake.md), then progressively refine and enrich it until you have features ready for analytics and machine learning.  
+Streaming and static data sources can be extracted and ingested into the platform using the petabyte scalability of Spark.  Land **all** of your raw data in reliable and performant [Delta Lake](https://github.com/marygracemoesta/R-User-Guide/blob/master/Delta_Lake/deltaLake.md), then progressively refine and enrich it until you have features ready for analytics and machine learning.  
 
 *Data Science & Machine Learning*
 
