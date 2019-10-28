@@ -7,4 +7,4 @@ Contents
 * Cluster Configs
 * Job Configs
 
-
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/images/ref_arch.png?raw=true">
