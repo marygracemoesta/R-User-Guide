@@ -34,7 +34,7 @@ ____
   * Migrating Existing Workloads
 * [**MLflow**](https://github.com/marygracemoesta/R-User-Guide/tree/master/MLflow)
   * [Tracking](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/tracking.md)
-  * [Models & Model Deployment](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/models.md)
+  * [Models & Model Deployment](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/model_deployment.md)
   * [Projects](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/projects.md)
 * [**Delta Lake**](https://github.com/marygracemoesta/R-User-Guide/blob/master/Delta_Lake/deltaLake.md)
   * Time Travel
