@@ -2,7 +2,7 @@
 ## Introduction to MLflow
 
 * [The Problem](the-problem-with-ml-engineering)
-* [MLflow: A General Framework](mlflow-a-general-framework)
+* [MLflow as a General Framework](mlflow-a-general-framework)
   * [Tracking](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/tracking.md)
   * [Model Deployment](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/model_deployment.md)
   * [Projects](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/projects.md)
@@ -17,7 +17,7 @@ Imagine you've created a nice workflow for model training.  Maybe you wrote some
 
 However, what if we train dozens or hundreds of models at once?  What about hyperparameter tuning, and all of the metrics and data that will generate?  Furthermore, the model will inevitably need to be retrained in the future.  While we saved the model object, we have no robust framework for reproducing any particular training run nor for tracking all of the data we generate during experimentation.  How are we going to keep track of models, features, hyperparameters, code, and training data - *without* resorting to Excel?  
 
-#### MLflow as A General Framework
+#### MLflow as a General Framework
 
 MLflow is an [open source](https://www.mlflow.org) project developed at Databricks to solve the problem of managing the machine learning lifecycle.  It does so through a combination of APIs and user interfaces for tracking, deploying, and managing machine learning models.  
 
