@@ -27,6 +27,10 @@ For exploratory data analysis, Databricks Notebooks support the vast open source
 
 If you prefer working in an IDE (such as RStudio), you can [launch a hosted instance of RStudio](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/RStudio_integrations.md) or configure a secure connection to Databricks through RStudio on your desktop.  Most everything on Databricks can be controlled via REST API or through the CLI.  
 
+*Production Jobs*
+
+Once you have your notebook or script ready for production, it can be scheduled to run on a regular or ad hoc basis.  [Jobs](https://docs.databricks.com/jobs.html#jobs) support retries, parameterization, log delivery, alerts, and more.  
+
 To summarize - the Unified Data Analytics Platform provides the software and infrastructure to bring together and extend the skills of engineers, scientists, and analysts.
 
 
