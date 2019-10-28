@@ -1,6 +1,6 @@
 # Databricks Architecture Overview
 
-To be most productive on Databricks, it's important to understand how data flows through the platform and where R fits into the picture.
+To be most productive on Databricks, it's important to have a basic understanding of how data flows through the platform and where R fits into the picture.
 ___
 
 ## What Even is Databricks?
