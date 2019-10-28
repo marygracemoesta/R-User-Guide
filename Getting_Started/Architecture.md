@@ -5,7 +5,7 @@ ___
 
 ## What Even is Databricks?
 
-Databricks is a cloud native **Unified Data Analytics Platform**, bringing together the work of data engineering, data science, and data analysts to realize business value.  In the following graphic we see a logical and conceptual representation of the platform and how it can be used to devlop data products. 
+Databricks is a cloud native **Unified Data Analytics Platform**, bringing together the work of data engineering, data science, and data analysts to realize business value.  In the following graphic we see a logical and conceptual representation of the platform and how it can be used to develop data products. 
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/images/ref_arch.png?raw=true">
 
