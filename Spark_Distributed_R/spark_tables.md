@@ -430,3 +430,6 @@ At this point you should have a solid foundation of understanding how to work wi
 ----
 
 *Knitted happily with R Markdown*
+
+___
+[Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
