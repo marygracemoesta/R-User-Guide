@@ -1,4 +1,4 @@
-## Working with Spark Tables in R
+# Working with Spark Tables in R
 
 The `sparklyr` and `SparkR` packages provide R users access to the power
 of Spark. However, for those who are new to distributed computing it can
@@ -16,8 +16,7 @@ eachother.
   - Aggregations
   - Hive Metastore: Writes and Reads
   - New Columns with Mutate & Hive UDFs
-  - SQL Translation and API Interoperability 
-
+  - SQL Translation and API Interoperability \_\_\_
 
 ### SparkSQL, `sparklyr`, and `dplyr`
 
@@ -44,18 +43,6 @@ SparkR::sparkR.session()
 ``` r
 sc <- spark_connect(method = "databricks")
 ```
-
-    ## Warning in file.create(to[okay]): cannot create file '/usr/local/lib/R/
-    ## site-library/sparklyr/java//sparklyr-2.4-2.11.jar', reason 'Permission
-    ## denied'
-
-    ## Warning in file.create(to[okay]): cannot create file '/usr/local/lib/R/
-    ## site-library/sparklyr/java//sparklyr-2.2-2.11.jar', reason 'Permission
-    ## denied'
-
-    ## Warning in file.create(to[okay]): cannot create file '/usr/local/lib/R/
-    ## site-library/sparklyr/java//sparklyr-2.1-2.11.jar', reason 'Permission
-    ## denied'
 
 #### Read in a JSON file from DBFS (blob storage) with `spark_read_json()`
 
@@ -112,6 +99,8 @@ group_by(jsonDF, author) %>%
     ## 3 Ralls, Kim               1
     ## 4 Randall, Cynthia         1
 
+Or with SQL in a SQL cell on Databricks.
+
     %sql
     select author, count(*) as n from jsonTable
     GROUP BY author
@@ -141,10 +130,10 @@ system("ls /dbfs/user/hive/warehouse/json_books_agg", intern = T)
 ```
 
     ## [1] "_SUCCESS"                                                                                          
-    ## [2] "_committed_1479134774032643852"                                                                    
-    ## [3] "_started_1479134774032643852"                                                                      
-    ## [4] "part-00000-tid-1479134774032643852-7c8a1d2f-63e9-46a4-8d21-07026dfc74de-6983-1-c000.snappy.parquet"
-    ## [5] "part-00001-tid-1479134774032643852-7c8a1d2f-63e9-46a4-8d21-07026dfc74de-6984-1-c000.snappy.parquet"
+    ## [2] "_committed_4404298384876617897"                                                                    
+    ## [3] "_started_4404298384876617897"                                                                      
+    ## [4] "part-00000-tid-4404298384876617897-d55d8f55-8261-448c-937c-89999de73413-9536-1-c000.snappy.parquet"
+    ## [5] "part-00001-tid-4404298384876617897-d55d8f55-8261-448c-937c-89999de73413-9537-1-c000.snappy.parquet"
 
 #### Reading from a Table
 
@@ -158,10 +147,10 @@ head(fromTable)
     ## # Source: spark<?> [?? x 2]
     ##   author                   n
     ##   <chr>                <dbl>
-    ## 1 Gambardella, Matthew     1
-    ## 2 Ralls, Kim               1
-    ## 3 Randall, Cynthia         1
-    ## 4 Corets, Eva              3
+    ## 1 Corets, Eva              3
+    ## 2 Gambardella, Matthew     1
+    ## 3 Ralls, Kim               1
+    ## 4 Randall, Cynthia         1
 
 #### Data Type Conversions with `sparklyr`
 
@@ -184,12 +173,12 @@ head(withDate)
     ## # Source: spark<?> [?? x 6]
     ##   author           genre   id    price title            today              
     ##   <chr>            <chr>   <chr> <dbl> <chr>            <dttm>             
-    ## 1 Gambardella, Ma… Comput… bk101 45    XML Developer's… 2019-10-29 16:57:11
-    ## 2 Ralls, Kim       Fantasy bk102  5.95 Midnight Rain    2019-10-29 16:57:11
-    ## 3 Corets, Eva      Fantasy bk103  5.95 Maeve Ascendant  2019-10-29 16:57:11
-    ## 4 Corets, Eva      Fantasy bk104  5.95 Oberon's Legacy  2019-10-29 16:57:11
-    ## 5 Corets, Eva      Fantasy bk105  5.95 The Sundered Gr… 2019-10-29 16:57:11
-    ## 6 Randall, Cynthia Romance bk106  4.95 Lover Birds      2019-10-29 16:57:11
+    ## 1 Gambardella, Ma… Comput… bk101 45    XML Developer's… 2019-10-29 17:19:08
+    ## 2 Ralls, Kim       Fantasy bk102  5.95 Midnight Rain    2019-10-29 17:19:08
+    ## 3 Corets, Eva      Fantasy bk103  5.95 Maeve Ascendant  2019-10-29 17:19:08
+    ## 4 Corets, Eva      Fantasy bk104  5.95 Oberon's Legacy  2019-10-29 17:19:08
+    ## 5 Corets, Eva      Fantasy bk105  5.95 The Sundered Gr… 2019-10-29 17:19:08
+    ## 6 Randall, Cynthia Romance bk106  4.95 Lover Birds      2019-10-29 17:19:08
 
 Let’s create two new columns, with the month and year, respectively.
 
@@ -204,12 +193,12 @@ head(withMMyyyy)
     ## # Source: spark<?> [?? x 8]
     ##   author      genre  id    price title      today               month  year
     ##   <chr>       <chr>  <chr> <dbl> <chr>      <dttm>              <int> <int>
-    ## 1 Gambardell… Compu… bk101 45    XML Devel… 2019-10-29 16:57:12    10  2019
-    ## 2 Ralls, Kim  Fanta… bk102  5.95 Midnight … 2019-10-29 16:57:12    10  2019
-    ## 3 Corets, Eva Fanta… bk103  5.95 Maeve Asc… 2019-10-29 16:57:12    10  2019
-    ## 4 Corets, Eva Fanta… bk104  5.95 Oberon's … 2019-10-29 16:57:12    10  2019
-    ## 5 Corets, Eva Fanta… bk105  5.95 The Sunde… 2019-10-29 16:57:12    10  2019
-    ## 6 Randall, C… Roman… bk106  4.95 Lover Bir… 2019-10-29 16:57:12    10  2019
+    ## 1 Gambardell… Compu… bk101 45    XML Devel… 2019-10-29 17:19:08    10  2019
+    ## 2 Ralls, Kim  Fanta… bk102  5.95 Midnight … 2019-10-29 17:19:08    10  2019
+    ## 3 Corets, Eva Fanta… bk103  5.95 Maeve Asc… 2019-10-29 17:19:08    10  2019
+    ## 4 Corets, Eva Fanta… bk104  5.95 Oberon's … 2019-10-29 17:19:08    10  2019
+    ## 5 Corets, Eva Fanta… bk105  5.95 The Sunde… 2019-10-29 17:19:08    10  2019
+    ## 6 Randall, C… Roman… bk106  4.95 Lover Bir… 2019-10-29 17:19:08    10  2019
 
 Now let’s transform the `today` column to a different date format, then
 extract the day of the month.
@@ -226,12 +215,12 @@ select(withUnixTimestamp, today, month, year, formatted_date, day)
     ## # Source: spark<?> [?? x 5]
     ##   today               month  year formatted_date   day
     ##   <dttm>              <int> <int> <chr>          <int>
-    ## 1 2019-10-29 16:57:12    10  2019 2019-10-29        29
-    ## 2 2019-10-29 16:57:12    10  2019 2019-10-29        29
-    ## 3 2019-10-29 16:57:12    10  2019 2019-10-29        29
-    ## 4 2019-10-29 16:57:12    10  2019 2019-10-29        29
-    ## 5 2019-10-29 16:57:12    10  2019 2019-10-29        29
-    ## 6 2019-10-29 16:57:12    10  2019 2019-10-29        29
+    ## 1 2019-10-29 17:19:08    10  2019 2019-10-29        29
+    ## 2 2019-10-29 17:19:08    10  2019 2019-10-29        29
+    ## 3 2019-10-29 17:19:08    10  2019 2019-10-29        29
+    ## 4 2019-10-29 17:19:08    10  2019 2019-10-29        29
+    ## 5 2019-10-29 17:19:08    10  2019 2019-10-29        29
+    ## 6 2019-10-29 17:19:08    10  2019 2019-10-29        29
 
 #### Repeat in SQL
 
@@ -253,22 +242,22 @@ SparkR::collect(withTimestampDF)
 ```
 
     ##    array dict  int string               today month
-    ## 1     NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 2     NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 3     NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 4     NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 5     NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 6     NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 7     NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 8     NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 9     NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 10    NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 11    NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 12    NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 13    NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 14    NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 15    NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
-    ## 16    NA   NA <NA>   <NA> 2019-10-29 16:57:12    10
+    ## 1     NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 2     NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 3     NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 4     NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 5     NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 6     NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 7     NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 8     NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 9     NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 10    NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 11    NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 12    NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 13    NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 14    NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 15    NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
+    ## 16    NA   NA <NA>   <NA> 2019-10-29 17:19:09    10
 
 Running it in a SQL cell would give you the same results.
 
@@ -382,6 +371,8 @@ print(query)
     ## FROM `iris`
     ## GROUP BY `Species`
 
+Pass that query directly to SparkR, and it works as well.
+
     SparkR::sql("SELECT `Species`, 
     PERCENTILE_APPROX(`Sepal_Length`, 0.25) AS `quantile_25th`, 
     PERCENTILE_APPROX(`Sepal_Length`, 0.5) AS `quantile_50th`, 
@@ -438,7 +429,8 @@ head(jsonDF3)
     ## 5 Corets, Eva          Fantasy  bk105   5.95 The Sundered Grail   
     ## 6 Randall, Cynthia     Romance  bk106   4.95 Lover Birds
 
------
 
 At this point you should have a solid foundation of understanding how to
 work with Spark tables in R on Databricks.
+----
+*Knitted happily with R Markdown*
