@@ -36,11 +36,6 @@ library(dplyr)
 
 ## Connect to Spark
 SparkR::sparkR.session()
-```
-
-    ## Java ref type org.apache.spark.sql.SparkSession id 1
-
-``` r
 sc <- spark_connect(method = "databricks")
 ```
 
