@@ -51,9 +51,6 @@ test_y <- test[, "quality"]
 ## Train a model with alpha and lambda parameters
 model <- glmnet(train_x, train_y, alpha = 0.5, lambda = 0.01, family= "gaussian", standardize = FALSE)
 
-## Perform cross validation and extract the lambda
-l1se <- cv.glmnet(train_x, train_y, alpha = alpha)$lambda.1se
-
 ## Predict on test data
 predicted <- predict(model, test_x)
 
@@ -61,6 +58,11 @@ predicted <- predict(model, test_x)
 rmse <- sqrt(mean((predicted - test_y) ^ 2))
 mae <- mean(abs(predicted - test_y))
 r2 <- as.numeric(cor(predicted, test_y) ^ 2)
+
+## Print to console
+message("  RMSE: ", rmse)
+message("  MAE: ", mae)
+message("  R2: ", mean(r2, na.rm = TRUE))
 
 ## Save cross validation plot to disk
 png(filename = "ElasticNet-CrossValidation.png")
@@ -71,6 +73,65 @@ dev.off()
 saveRDS(model, file = "glmnet_model.rds")
 ```
 
+At this point we would likely re-execute this script over and over with slightly different values for `alpha` and `lambda` in the call to `glmnet()`, checking the message output for improvements in model accuracy.  How about instead we leverage the MLflow APIs to programmatically log all of that information for us?
+
+This time, we'll take the same code but make some changes.  First, define a function called `train_wine_quality()` to accept data and model parameters as input.  We then wrap our existing data science code in MLflow functions.  Take a look:
+
+```r
+## Define the function, and preprocessing remains the same
+train_wine_quality <- function(data, alpha, lambda) {
+ sampled <- base::sample(1:nrow(data), 0.75 * nrow(data))
+ train <- data[sampled, ]
+ test <- data[-sampled, ]
+ train_x <- as.matrix(train[, !(names(train) == "quality")])
+ test_x <- as.matrix(test[, !(names(train) == "quality")])
+ train_y <- train[, "quality"]
+ test_y <- test[, "quality"]
+
+ ## Define the parameters used in each MLflow run
+ alpha <- mlflow_param("alpha", alpha, "numeric")
+ lambda <- mlflow_param("lambda", lambda, "numeric")
+
+ ## Begin a new run in MLflow
+ with(mlflow_start_run(), {
+     model <- glmnet(train_x, train_y, alpha = alpha, lambda = lambda, family= "gaussian", standardize = FALSE)
+     l1se <- cv.glmnet(train_x, train_y, alpha = alpha)$lambda.1se
+     
+     ## 'crate' the model object to store it as a function
+     predictor <- crate(~ glmnet::predict.glmnet(!!model, as.matrix(.x)), !!model, s = l1se)
+  
+     predicted <- predictor(test_x)
+     
+     rmse <- sqrt(mean((predicted - test_y) ^ 2))
+     mae <- mean(abs(predicted - test_y))
+     r2 <- as.numeric(cor(predicted, test_y) ^ 2)
+     message("  RMSE: ", rmse)
+     message("  MAE: ", mae)
+     message("  R2: ", mean(r2, na.rm = TRUE))
+
+     ## Log the parameters associated with this run
+     mlflow_log_param("alpha", alpha)
+     mlflow_log_param("lambda", lambda)
+  
+     ## Log metrics we define from this run
+     mlflow_log_metric("rmse", rmse)
+     mlflow_log_metric("r2", mean(r2, na.rm = TRUE))
+     mlflow_log_metric("mae", mae)
+  
+     # Save plot to disk
+     png(filename = "ElasticNet-CrossValidation.png")
+     plot(cv.glmnet(train_x, train_y, alpha = alpha), label = TRUE)
+     dev.off()
+  
+     ## Log that plot as an artifact
+     mlflow_log_artifact("ElasticNet-CrossValidation.png")
+
+     ## Log model object
+     mlflow_log_model(predictor, "model")
+  
+})
+  }
+```
 
 * Set of APIs/solution description
 * Existing data science code
