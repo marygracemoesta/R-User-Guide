@@ -99,3 +99,8 @@ Where as Rstudio Desktop + DB Connect uses the local machine and the drive and s
 Something important to note when using the Rstudio integrations:
 - Loss of notebook functionality: magic commands that work in Databricks notebooks, do not work within Rstudio
 - As of September 2019, `sparklyr` is *not* supported using Rstudio Desktop + DB Connect 
+
+
+___
+[Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
+
