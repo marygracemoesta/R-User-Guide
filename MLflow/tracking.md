@@ -10,7 +10,6 @@
   * [Models](models)
   * [Arbitrary Artifacts and Tags](artibrary-artifacts-and-tags)
 * [Advanced Topics](advanced-topics)
-  * [Crate, what?](#crate,-what?)
  
  ___
 
@@ -151,5 +150,5 @@ train_wine_quality <- function(data, alpha, lambda) {
 ```
 
 * Interacting with Runs
-* 
+* For more detail on crate, see models section
 
