@@ -53,3 +53,8 @@ The distinguishing difference between single node R and distributed R is paralle
 Distributed R is run not only on a driver, but also on several other instances called workers. The driver sends several 
 tasks to the workers in parallel. Because these tasks are happening in parallel, often times performance is increased 
 when using distributed R rather than single node R. Databricks supports the use of **both** single node and distributed R. 
+
+
+___
+[Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
+
