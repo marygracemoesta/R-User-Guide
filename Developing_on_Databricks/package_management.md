@@ -135,3 +135,8 @@ If you need these libraries to be available to each worker, you can use an [init
 
 * Idea of DCS
 * Examples of R Dockerfiles 
+
+
+___
+[Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
+
