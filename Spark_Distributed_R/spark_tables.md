@@ -430,7 +430,8 @@ head(jsonDF3)
     ## 6 Randall, Cynthia     Romance  bk106   4.95 Lover Birds
 
 
-At this point you should have a solid foundation of understanding how to
-work with Spark tables in R on Databricks.
+At this point you should have a solid foundation of understanding how to work with Spark tables in R on Databricks.
+
 ----
+
 *Knitted happily with R Markdown*
