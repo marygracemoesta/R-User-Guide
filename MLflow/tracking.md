@@ -1,13 +1,26 @@
 
 ## MLflow Tracking
 
+**Contents**
+
+* [Existing Model Training Code](basic-model-training-code)
+* [Log to MLflow](log-to-mlflow)
+  * [Start Run](start-run)
+  * [Parameters and Metrics](parameters-and-metrics)
+  * [Models](models)
+  * [Arbitrary Artifacts and Tags](artibrary-artifacts-and-tags)
+
 The first thing to know about MLflow is that it will track whatever you tell it to.  That means model parameters, metrics, model objects, messages, bits of data... you decide!  
 
 All of these *artifacts* are stored in the *MLflow Tracking Server*, where they are organized into distinct *experiments*.  Each iteration of experimentation is regarded as a *run*, and given a unique *run id*.  Represented as a heirarchy, 
 
 ```Tracking Server --> Experiment --> Run --> Artifact```
 
-This will become clearer as we work through examples.  Let's start by taking a look at some basic model training code using the **wine quality** data set.
+This will become clearer as we work through examples.  
+
+#### Existing Model Training Code
+
+Let's start by taking a look at typical model training code using the **wine quality** data set.
 
 ```r
 # Read the wine-quality csv file
