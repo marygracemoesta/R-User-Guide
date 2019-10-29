@@ -113,3 +113,7 @@ _Results:_
 | arrow_off  | 1,000,000  | 10.77min|
 
 It's worth noting that Databricks offers similar optimizations out of the box for SparkR.  See [here](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/DB_Runtime.md#sparkr-optimization) for more details.
+
+___
+[Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
+
