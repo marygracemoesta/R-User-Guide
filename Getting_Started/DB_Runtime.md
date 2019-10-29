@@ -104,3 +104,6 @@ https://docs.databricks.com/release-notes/cluster-images/index.html#releases)
 
 For more information on package management for packages that do not already exist in Databricks Runtime, please see 
 [Developing on Databricks - Package Management](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/package_management.md).
+
+___
+[Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
