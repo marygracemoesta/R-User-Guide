@@ -169,4 +169,6 @@ dbutils.fs.mkdirs("/databricks/rscripts")
 dbutils.fs.put("/databricks/rscripts/modify-rprofile.sh", script, True)
 ```
 Note the path is `/databricks/rscripts/modify-rprofile.sh`.  This is what we will add to the _Init Script_ path in the Advanced Options section of the cluster UI.
+
 ___
+[Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
