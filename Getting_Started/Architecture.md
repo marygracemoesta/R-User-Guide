@@ -30,4 +30,8 @@ Once you have your notebook or script ready for production, it can be scheduled 
 
 To summarize - the Unified Data Analytics Platform provides the software and infrastructure to bring together and extend the skills of engineers, scientists, and analysts.
 
+___
+
+[Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
+
 
