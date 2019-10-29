@@ -61,3 +61,7 @@ You can read more about the SparkR and sparklyr data types in the `Spark - Distr
 
 ## Storage for Deep Learning
 Within DBFS there is a `/ml` directory. This directory was designed with an optimized FUSE mount specifically for deep learning and processing image data. To learn more, see the [high performance local APIs](https://docs.databricks.com/user-guide/databricks-file-system.html#high-performance-local-apis) section of the DBFS documentation.
+
+
+___
+[Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
