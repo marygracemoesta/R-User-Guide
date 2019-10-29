@@ -91,7 +91,7 @@ There are therefore two problems to overcome with regard to performance.  First,
 
 ### Getting the Best Performance on Databricks
 
-To get better performance we need to avoid doing all that work in the first place!  We can accomplish this by persisting our installed packages in a library on DBFS. 
+To get better performance we need to avoid doing all that work in the first place!  We can accomplish this by ultimately persisting our installed packages in a library on DBFS. 
 
 ### Building a Library on DBFS
 
@@ -99,23 +99,29 @@ All packages are installed into a _library_, which is located on a path in the f
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/defaul_libpaths.png?raw=true"> 
 
-When you call `library(dplyr)` R will search for the package in the libraries listed under `.libPaths()`, starting at the first path and if the package isn't found continue searching through the rest of the directories in order.  You can add and remove paths from `.libPaths()`, effectively telling R where to look for packages.   Let's create a directory on DBFS and add it to the list of libraries.
+When you call `library(dplyr)` R will search for the package in the libraries listed under `.libPaths()`, starting at the first path and if the package isn't found continue searching through the rest of the directories in order.  You can add and remove paths from `.libPaths()`, effectively telling R where to look for packages.   Let's create a directory on the driver to install packages into and add it to the list of libraries.
+
+
 
 ```bash
 %sh
-mkdir /dbfs/path_to_r_library 
+mkdir /usr/lib/R/proj-lib-test
 ```
 
 ```R
 ## Append our library to the list
-.libPaths(c("/dbfs/path_to_r_library", .libPaths()))
+.libPaths(c("/usr/lib/R/proj-lib-test", .libPaths()))
 ```
 
-Now every package we install will persist to that directory on DBFS.  When the cluster is terminated, the packages will remain.  
+Now every package we install will write to that directory on the driver.  Once you have the packages and versions you want in that directory, **copy them to DBFS to persist.**
 
-<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/libpaths.png?raw=true">
+```R
+## Copy to DBFS
+system("cp -R /usr/lib/R/proj-lib-test /dbfs/path_to_r_library", intern = T)
+```
+Now when the cluster is terminated, the packages will remain.  
 
-See [this notebook](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/notebooks/Faster_R_Package_Loads_on_Databricks.Rmd) for a thorough example. 
+See [this page](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/notebooks/faster_package_loads.md) for a more thorough example. 
 
 ### Setting the Library Path
 
