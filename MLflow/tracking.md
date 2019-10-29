@@ -9,6 +9,10 @@
   * [Parameters and Metrics](parameters-and-metrics)
   * [Models](models)
   * [Arbitrary Artifacts and Tags](artibrary-artifacts-and-tags)
+* [Advanced Topics](advanced-topics)
+  * [Crate, what?](#crate,-what?)
+ 
+ ___
 
 The first thing to know about MLflow is that it will track whatever you tell it to.  That means model parameters, metrics, model objects, messages, bits of data... you decide!  
 
@@ -145,11 +149,6 @@ train_wine_quality <- function(data, alpha, lambda) {
 })
   }
 ```
-
-* Set of APIs/solution description
-* Existing data science code
-* Wrappers
-* Logging plots and other arbitrary artifacts
 
 * Interacting with Runs
 * 
