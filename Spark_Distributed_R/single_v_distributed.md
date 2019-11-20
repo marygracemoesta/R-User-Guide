@@ -30,9 +30,9 @@ In a Spark application, the driver sends **tasks** to the empty slots on the exe
 
 <img src="http://training.databricks.com/databricks_guide/gentle_introduction/spark_cluster_tasks.png" width=850 height=300><br>
 
-Driver programs access Spark through a `SparkSession` object, which is already instantiated for you in Databricks Notebooks.  In a sense, you can think of the notebook environment as the driver.  When working in RStudio, you'll have to establish the connection to the SparkSession before submitting work to the cluster.
+Driver programs access Spark through a `SparkSession` object, which is already instantiated for you in Databricks Notebooks.  In a sense, you can think of the notebook environment as the driver.  When working in RStudio (either via Databricks Connect or R Studio Server Integration), you'll have to establish the connection to the SparkSession before submitting work to the cluster.
 
-The details of your Apache Spark application can be viewed in the `Spark Web UI`.  The web UI is accessible in Databricks by going to "Clusters" and then clicking on the "View Spark UI" link. Alternatively, you can click at the top left of a notebook where you would select the cluster to view its Spark Web UI.
+The details of your Apache Spark application can be viewed in the `Spark Web UI` when working in either Databricks notebooks or R Studio.  The web UI is accessible in Databricks by going to "Clusters" and then clicking on the "View Spark UI" link. Alternatively, you can click at the top left of a notebook where you would select the cluster to view its Spark Web UI.
 
 ### Spark with R
 
