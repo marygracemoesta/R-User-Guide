@@ -5,5 +5,4 @@ The best place to get started automating R jobs on Databricks is with the [`bric
 
   * Jobs
   * Notebook Workflows
-  * REST API
   * Migrating Existing Workloads
