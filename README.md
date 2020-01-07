@@ -29,14 +29,13 @@ ____
   * [User-Defined Functions (UDFS)](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/udfs.md)
   * [Apache Arrow](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/arrow.md)
 * [**R in Production**](https://github.com/marygracemoesta/R-User-Guide/tree/master/R_in_Production)
-  * Jobs
-  * Notebook Workflows
-  * Migrating Existing Workloads
+  * [Jobs](https://github.com/marygracemoesta/R-User-Guide/blob/master/R_in_Production/jobs.md)
+  * [Notebook Workflows](https://github.com/marygracemoesta/R-User-Guide/blob/master/R_in_Production/notebook_workflows.md)
+  * [bricksteR Package](https://github.com/marygracemoesta/R-User-Guide/blob/master/R_in_Production/brickster.md)
+  * [Migrating Existing Workloads](https://github.com/marygracemoesta/R-User-Guide/blob/master/R_in_Production/migrating.md)
 * [**MLflow**](https://github.com/marygracemoesta/R-User-Guide/tree/master/MLflow)
   * [Tracking](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/tracking.md)
   * [Models & Model Deployment](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/model_deployment.md)
   * [Projects](https://github.com/marygracemoesta/R-User-Guide/blob/master/MLflow/projects.md)
-* [**Delta Lake**](https://github.com/marygracemoesta/R-User-Guide/blob/master/Delta_Lake/deltaLake.md)
-  * Time Travel
-  
+* [**Delta Lake**](https://github.com/marygracemoesta/R-User-Guide/blob/master/Delta_Lake/deltaLake.md)  
   ___
