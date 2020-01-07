@@ -239,7 +239,11 @@ Future Plans
 
 That's about all there is to it to get started with automating R on Databricks! Whether you are using `blastula` to email a report or are spinning up a massive cluster to perform ETL or model training, these APIs will make it easy for you to define, schedule, and monitor those jobs from R.
 
-In 2020 I'd like to add support for DBFS operations, and provide additional tools for managing libraries.
-
 Questions or feedback? Feel free to contact me at <rafi.kurlansik@databricks.com>.
+
+
+___
+
+[Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
+
 
