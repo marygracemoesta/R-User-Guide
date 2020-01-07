@@ -1,5 +1,9 @@
 # R on Databricks: A User Guide
 
+_Authors: <br>
+Rafi Kurlansik, Solutions Architect, Databricks <br>
+Mary Grace Moesta, Customer Success Engineer, Databricks_
+
 R is widely used by data teams in every sector of the economy.  It enjoys a vibrant ecosystem of open source packages including two APIs for working with Apache Spark.  This opens up the tantalizing prospect of scaling R programs to hundreds of machines executing in parallel.   
 
 As Databricks grows in popularity and usage across market segments - especially Enterprise -  R users face a somewhat steep learning curve for both Spark and working in the cloud generally.  This user guide is designed to facilitate a smooth transition to productivity for R developers using Databricks.  Each section has examples in R or discusses a particular feature as it relates to R. 
