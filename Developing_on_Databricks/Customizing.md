@@ -68,12 +68,11 @@ Apache Arrow is an open source project that provides a common in-memory format b
 %python
 
 ## Define contents of the script
-script = """
 #!/bin/bash
 git clone https://github.com/apache/arrow
 cd arrow/r
 R CMD INSTALL .
-Rscript -e "arrow::install_arrow()"
+sudo su - -c "R -e 'arrow::install_arrow()'"
 """
 
 ## Create directory to save the script in
