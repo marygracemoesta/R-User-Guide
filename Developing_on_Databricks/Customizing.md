@@ -66,31 +66,17 @@ Apache Arrow is an open source project that provides a common in-memory format b
 
 ```python
 %python
-
 ## Define contents of the script
 script = """
 #!/bin/bash
-sudo apt update
-sudo apt install -y -V apt-transport-https lsb-release
-curl https://dist.apache.org/repos/dist/dev/arrow/KEYS | sudo apt-key add -
-sudo tee /etc/apt/sources.list.d/apache-arrow.list <<APT_LINE
-deb [arch=amd64] https://dl.bintray.com/apache/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/ $(lsb_release --codename --short) main
-deb-src https://dl.bintray.com/apache/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/ $(lsb_release --codename --short) main
-APT_LINE
-sudo apt update
-sudo apt install -y -V libarrow-dev # For C++
-sudo apt install -y -V libarrow-glib-dev # For GLib (C)
-sudo apt install -y -V libgandiva-dev # For Gandiva C++
-sudo apt install -y -V libgandiva-glib-dev # For Gandiva GLib (C)
-sudo apt install -y -V libparquet-dev # For Apache Parquet C++
-sudo apt install -y -V libparquet-glib-dev # For Apache Parquet GLib (C
+git clone https://github.com/apache/arrow
+cd arrow/r
+R CMD INSTALL .
+Rscript -e "arrow::install_arrow()"
 """
-
 ## Create directory to save the script in
-dbutils.fs.mkdirs("/databricks/arrow")
-
+#dbutils.fs.mkdirs("/databricks/arrow")
 ## Save the script to DBFS
-dbutils.fs.put("/databricks/arrow/arrow-install.sh", script, True)
 ```
 
 Note the path is `/databricks/arrow/arrow-install.sh`. This is what we will add to the Init Script path in the Advanced Options section of the cluster UI.  For more details please see the [Apache Arrow with R](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/arrow.md) section.
