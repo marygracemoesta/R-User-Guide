@@ -77,6 +77,7 @@ Rscript -e "arrow::install_arrow()"
 ## Create directory to save the script in
 #dbutils.fs.mkdirs("/databricks/arrow")
 ## Save the script to DBFS
+dbutils.fs.put("/databricks/arrow/arrow-install.sh", script, True)
 ```
 
 Note the path is `/databricks/arrow/arrow-install.sh`. This is what we will add to the Init Script path in the Advanced Options section of the cluster UI.  For more details please see the [Apache Arrow with R](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/arrow.md) section.
