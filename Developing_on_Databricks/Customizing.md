@@ -68,6 +68,7 @@ Apache Arrow is an open source project that provides a common in-memory format b
 %python
 
 ## Define contents of the script
+script = """
 #!/bin/bash
 git clone https://github.com/apache/arrow
 cd arrow/r
