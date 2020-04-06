@@ -66,6 +66,7 @@ Apache Arrow is an open source project that provides a common in-memory format b
 
 ```python
 %python
+
 ## Define contents of the script
 script = """
 #!/bin/bash
@@ -74,8 +75,10 @@ cd arrow/r
 R CMD INSTALL .
 Rscript -e "arrow::install_arrow()"
 """
+
 ## Create directory to save the script in
-#dbutils.fs.mkdirs("/databricks/arrow")
+dbutils.fs.mkdirs("/databricks/arrow")
+
 ## Save the script to DBFS
 dbutils.fs.put("/databricks/arrow/arrow-install.sh", script, True)
 ```
