@@ -48,7 +48,7 @@ sc <- spark_connect(method = "databricks")
 
 This will display the tables registered in the metastore.  
 
-<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/sparklyr_tables_ui_view.png?raw=true" height=300 width=420>
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/sparklyr_tables_ui_view.png?raw=true" height=300 width=480>
 
 
 Tables from the `default` database will be shown, but you can switch the database using `sparklyr::tbl_change_db()`.
@@ -82,7 +82,7 @@ You can store RStudio Projects on DBFS and any other arbitrary file.  When your 
 
 The first step is to disable websockets from within RStudio's options:
 
-<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/disable_websockets.png?raw=true" width = 300 height = 300>
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/disable_websockets.png?raw=true" width = 350 height = 350>
 
 Once that is complete, a GitHub repo can be connected by creating a new project from the Project dropdown menu at the top right of RStudio.  Select *Version Control*, and on the next window select the git repo that you want to work with on Databricks.  When you click *Create Project*, the repo will be cloned to the subdirectory you chose on the driver node and git integration will be visible from RStudio.
 
