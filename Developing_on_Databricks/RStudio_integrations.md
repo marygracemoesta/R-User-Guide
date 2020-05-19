@@ -48,7 +48,7 @@ sc <- spark_connect(method = "databricks")
 
 This will display the tables registered in the metastore.  
 
-<img src="https://docs.databricks.com/_images/rstudiosessionuisparklyr.png" height=300 width=420>
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/sparklyr_tables_ui_view.png?raw=true" height=300 width=420>
 
 
 Tables from the `default` database will be shown, but you can switch the database using `sparklyr::tbl_change_db()`.
@@ -80,11 +80,24 @@ You can store RStudio Projects on DBFS and any other arbitrary file.  When your 
 
 #### Git Integration
 
-### RStudio Desktop with Databricks Connect
+The first step is to disable websockets from within RStudio's options:
 
-#### Setup
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/disable_websockets.png?raw=true" width = 300 height = 300>
 
-#### Limitations
+Once that is complete, a GitHub repo can be connected by creating a new project from the Project dropdown menu at the top right of RStudio.  Select *Version Control*, and on the next window select the git repo that you want to work with on Databricks.  When you click *Create Project*, the repo will be cloned to the subdirectory you chose on the driver node and git integration will be visible from RStudio.
+
+At this point you can resume your usual workflow of checking out branches, committing new code, and pushing changes to the remote repo.  
+
+#### Persisting R Project Files in DBFS
+
+Instead of GitHub, you can also use the Databricks File System (DBFS) to persist files associated with the R project.  Since DBFS enables users to treat buckets in object storage as local storage by prepending the write path with `/dbfs/`, this is very easy to do with the RStudio terminal window or with `system()` commands.
+
+For example, an entire R project can be copied into DBFS via a single `cp` command.
+
+```r
+system("cp -r /driver/my_r_project /dbfs/my_r_project")
+```
+___
 
 ## Rstudio Desktop Integration
 Databricks also supports integration with Rstudio Desktop using Databricks Connect. Please refer to the [PDF](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/DB%20Connect%20with%20RStudio%20Dekstop.pdf) For step by step instructions. 
@@ -92,14 +105,11 @@ Databricks also supports integration with Rstudio Desktop using Databricks Conne
 ## Differences in Integrations
 When it comes to the two different integrations with Rstudio - the distinction between the two become prevalant when looking at the architecture. In the Rstudio Server integration, Rstudio lives inside the driver. 
 
-
 Where as Rstudio Desktop + DB Connect uses the local machine and the drive and submit queries to the nodes managed by the Databricks cluster. 
 
 ## Gotchas 
 Something important to note when using the Rstudio integrations:
 - Loss of notebook functionality: magic commands that work in Databricks notebooks, do not work within Rstudio
-- As of September 2019, `sparklyr` is *not* supported using Rstudio Desktop + DB Connect 
-
 
 ___
 [Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
