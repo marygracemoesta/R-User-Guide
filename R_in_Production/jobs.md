@@ -19,7 +19,7 @@ Let's go through these options with examples, one by one.
 
 
 
-#### `bricskteR`
+#### `bricksteR`
 
 `bricksteR` builds off the Jobs API, making it easy to create, run, and manage R jobs on Databricks.  You can find the package on GitHub [here](https://github.com/RafiKurlansik/bricksteR), and the vignette is [included](https://github.com/marygracemoesta/R-User-Guide/blob/master/R_in_Production/brickster.md) as part of this user guide.
 
