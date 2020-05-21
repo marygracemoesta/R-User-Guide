@@ -239,7 +239,6 @@ This concludes the lesson on UDFs with Spark in R.  If you want to learn more, h
 2. [Shell Oil: Parallelizing Large Simulations using SparkR on Databricks](https://databricks.com/blog/2017/06/23/parallelizing-large-simulations-apache-sparkr-databricks.html)
 3. [Distributed R Chapter from 'The R in Spark'](https://therinspark.com/distributed.html)
 
-*** 
-___
+
 [Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
 
