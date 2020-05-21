@@ -1,16 +1,14 @@
-%md
 ## Distributed R: User Defined Functions in Spark
 
 **Contents**
 
-* Understanding UDFs
-* Distributed `apply`
+* [Understanding UDFs](#understanding-udfs)
+* [Distributed `apply`](#distributed-apply)
   * `spark_apply`
   * `dapply` & `gapply`
   * `spark.lapply`
-* Leveraging R Packages Inside a UDF
-* Apache Arrow
-* Additional Examples
+* [Leveraging Packages in Distributed R](#leveraging-packages-in-distributed-r)
+* [Apache Arrow](#apache-arrow)
 
 ___
 
