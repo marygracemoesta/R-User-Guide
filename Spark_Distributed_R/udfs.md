@@ -10,9 +10,8 @@
 * [Leveraging Packages in Distributed R](#leveraging-packages-in-distributed-r)
 * [Apache Arrow](#apache-arrow)
 
-___
 
-#### Understanding UDFs
+### Understanding UDFs
 
 Both `SparkR` and `sparklyr` support user-defined functions (UDFs) in R which allow you to execute arbitrary R code across a cluster.  The advantage here is the ability to distribute the computation of functions included in R's massive ecosystem of 3rd party packages.  In particular, you may want to use a domain-specific package for machine learning or apply a specific statisical transformation that is not available through the Spark API.  Running in-house custom R libraries on larger data sets would be another place to use this family of functions.
 
@@ -36,7 +35,7 @@ The general best practice is to leverage the Spark API first and foremost, then 
 
 ___
 
-#### Distributed `apply`
+### Distributed `apply`
 
 Between `sparklyr` and `SparkR` there are a number of options for how you can distribute your R code across a cluster with Spark.  Functions can be applied to each *group* or each *partition* of a Spark DataFrame, or to a list of elements in R.  In the following table you can see the whole family of distributed `apply` functions:
 
@@ -51,7 +50,7 @@ Between `sparklyr` and `SparkR` there are a number of options for how you can di
 
 Let's work through these different functions one by one.
 
-##### `spark_apply`
+#### `spark_apply`
 
 For the first example, we'll use **`spark_apply()`**.
 
@@ -102,7 +101,7 @@ head(resultsDF)
 ```
 
 
-##### `dapply` & `gapply`
+#### `dapply` & `gapply`
 
 In `SparkR`, there are separate functions depending on whether you want to run R code on each partition of a Spark DataFrame (`dapply`), or each group (`gapply`).  With these functions you **must** supply the schema ahead of time.  In the next example we will recreate the first but use `gapply` instead.
 
@@ -141,7 +140,7 @@ head(resultsDF)
 6            XE XE_new
 ```
 
-##### `spark.lapply`
+#### `spark.lapply`
 
 This final function is also from SparkR.  It accepts a list and then uses Spark to apply R code to each element in the list across the cluster.  As [the docs](https://spark.apache.org/docs/latest/api/R/spark.lapply.html) state, it is conceptually similar to `lapply` in base R, so it will return a **list** back to the driver.  
 
@@ -175,7 +174,6 @@ head(tidied)
 6            XE XE_new
 ```
 
-%md
 ___
 
 ### Leveraging Packages in Distributed R
@@ -223,7 +221,7 @@ head(coefDF)
 6 MSY    DepDelay       0.981   0.00663   148.    0.      
 ```
 
-## Apache Arrow
+### Apache Arrow
 
 [Apache Arrow](https://arrow.apache.org/) is a project that aims to improve analytics processing performance by representing data in-memory in columnar format and taking advantage of modern hardware.  The main purpose and benefit of the project can be summed up in the following image, taken from the homepage of the project.
 
