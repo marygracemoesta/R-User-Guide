@@ -240,3 +240,6 @@ This concludes the lesson on UDFs with Spark in R.  If you want to learn more, h
 3. [Distributed R Chapter from 'The R in Spark'](https://therinspark.com/distributed.html)
 
 *** 
+___
+[Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
+
