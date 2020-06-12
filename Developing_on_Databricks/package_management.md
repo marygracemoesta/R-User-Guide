@@ -71,6 +71,14 @@ This can also be done in a `%sh` cell:
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/install_custom_sh.png?raw=true">
 
+If the package source is located on github (or other version control systems), you can make use of the `devtools` package to install directly from the source repository:
+
+```R
+require(devtools)
+install_github("tidyverse/dplyr")
+```
+[See the devtools documentation for more details](https://www.rdocumentation.org/packages/devtools)
+
 If you want to install the custom package on each node in the cluster you will need to use an [init script](linktocome).
 
 ## Faster Package Loads
