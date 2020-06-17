@@ -15,17 +15,21 @@ RStudio offers a polished experience for developing R programs that is impossibl
  ___
  
 ### Hosted RStudio Server
-The simplest way to use RStudio with Databricks is to install the open source version of Rstudio Server on the driver node of a cluster, as illustrated below.
+The simplest way to use RStudio with Databricks is to use Databricks Runtime (DBR) for Machine Learning 7.0+.  The open source version of Rstudio Server will automatically installed on the driver node of a cluster:
 
-<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/rstudioServerarchitecture.png?" raw = true>
+<img src="https://spark.rstudio.com/images/deployment/databricks/rstudio-databricks-local.png">
+  
+___
 
-This is achieved by attaching the [RStudio Server installation script](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#rstudio-server-installation) to your cluster.  Full details for setting up hosted Rstudio Server can be found in the official docs [here](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#get-started-with-rstudio-server-open-source).  If you have a license for RStudio Server Pro you can [set that up](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#install-rstudio-server-pro) as well.
+You can then launch hosted RStudio Server from the 'Apps' tab in the Cluster UI:
 
-After the init script has been installed on the cluster, login information can be found in the `Apps` tab of the cluster UI:
+<img src ="https://docs.databricks.com/_images/rstudio-apps-ui.png" height = 275 width = 1000>
 
-<img src ="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/Rstudio_integration.png?" height = 275 width = 2000>
+For earlier versions of DBR you can attach the [RStudio Server installation script](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#rstudio-server-installation) to your cluster.  Full details for setting up hosted Rstudio Server can be found in the official docs [here](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#get-started-with-rstudio-server-open-source).  If you have a license for RStudio Server Pro you can [set that up](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#install-rstudio-server-pro) as well.
 
-The hosted RStudio experience should feel nearly identical to your desktop experience.  In fact, you can also customize the environment further by supplying an additional init script to [modify `Rprofile.site`](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#modifying-rprofile-in-rstudio).  One major limitation is the inability to host Shiny Apps today, though this is on the roadmap for 2020.
+After the init script has been installed on the cluster, login information can be found in the `Apps` tab of the cluster UI as before.
+
+The hosted RStudio experience should feel nearly identical to your desktop experience.  In fact, you can also customize the environment further by supplying an additional init script to [modify `Rprofile.site`](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#modifying-rprofile-in-rstudio).  
 
 #### Accessing Spark
 
@@ -99,18 +103,17 @@ system("cp -r /driver/my_r_project /dbfs/my_r_project")
 ```
 ___
 
-## Rstudio Desktop Integration
-Databricks also supports integration with Rstudio Desktop using Databricks Connect. Please refer to the [PDF](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/DB%20Connect%20with%20RStudio%20Dekstop.pdf) For step by step instructions. 
+### RStudio Desktop with Databricks Connect
+Databricks Connect is a library that allows users to remotely access Spark on Databricks clusters from their local machine.  At a high level the architecture looks like this:
 
-## Differences in Integrations
-When it comes to the two different integrations with Rstudio - the distinction between the two become prevalant when looking at the architecture. In the Rstudio Server integration, Rstudio lives inside the driver. 
+<img src="https://spark.rstudio.com/images/deployment/databricks/rstudio-databricks-remote.png">
 
-Where as Rstudio Desktop + DB Connect uses the local machine and the drive and submit queries to the nodes managed by the Databricks cluster. 
+##### Setup
+Documentation can be found [here](https://docs.databricks.com/dev-tools/databricks-connect.html#databricks-connect), but essentially you will install the client library locally, configure the cluster on Databricks, and then authenticate with a token.  At that point you'll be able to connect to Spark on Databricks  from your local RStudio instance and develop freely.
 
-## Gotchas 
+##### Gotchas 
 Something important to note when using the Rstudio integrations:
 - Loss of notebook functionality: magic commands that work in Databricks notebooks, do not work within Rstudio
-
+- `dbutils` is not supported
 ___
 [Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
-
