@@ -22,12 +22,15 @@ These performance benefits are realized through a form of data skipping and hard
 
 
 #### Installing Arrow
-In order for Arrow to work properly, complete the following steps:
+In order for Arrow to work properly, complete the following steps **for Databricks Runtime < 7.0**:
 
 1. Attach the [initialization script for Apache Arrow](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#apache-arrow-installation) to your cluster. 
 2. Create a cluster with Databricks Runtime version 5.5 or greater.
 3. Install `arrow` from CRAN in the Cluster UI.
 4. Install `sparklyr` from CRAN in the Cluster UI. 
+
+For Databricks Runtime 7.0+, install `arrow` from CRAN in the Cluster UI.  Also add `spark.sql.execution.arrow.sparkr.enabled true` to the 'Spark' tab under 'Advanced Settings' in the Cluster UI.  
+
 
 #### Arrow Benchmarks
 The code for these benchmarks was taken [from RStudio](https://blog.rstudio.com/2019/03/15/sparklyr-1-0/) and run on Databricks Runtime 5.5 LTS.  They are divided into three tasks:
