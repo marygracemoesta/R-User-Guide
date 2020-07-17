@@ -29,7 +29,9 @@ In order for Arrow to work properly, complete the following steps **for Databric
 3. Install `arrow` from CRAN in the Cluster UI.
 4. Install `sparklyr` from CRAN in the Cluster UI. 
 
-For Databricks Runtime 7.0+, install `arrow` from CRAN in the Cluster UI.  Also add `spark.sql.execution.arrow.sparkr.enabled true` to the 'Spark' tab under 'Advanced Settings' in the Cluster UI.  
+**For Databricks Runtime 7.0+**:
+1. Install `arrow` from CRAN in the Cluster UI.
+2. Add `spark.sql.execution.arrow.sparkr.enabled true` to the 'Spark' tab under 'Advanced Settings' in the Cluster UI.  
 
 
 #### Arrow Benchmarks
