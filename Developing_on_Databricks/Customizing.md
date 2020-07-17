@@ -62,7 +62,7 @@ Note the path is `/databricks/rstudio/rstudio-install.sh`.  This is what we will
 
 #### Apache Arrow Installation
 
-Apache Arrow is an open source project that provides a common in-memory format between different processes.  This is especially useful when moving data back and forth between Spark and R, as you would with [user defined functions](linktocome).  To enable Arrow with R on Databricks, the first step is to attach an init script to a cluster.  Using a Python cell in a Databricks Notebook, run the following cell:
+Apache Arrow is an open source project that provides a common in-memory format between different processes.  This is especially useful when moving data back and forth between Spark and R, as you would with [user defined functions](linktocome).  To enable Arrow with R on Databricks Runtimes prior to 7.0, the first step is to attach an init script to a cluster.  Using a Python cell in a Databricks Notebook, run the following cell:
 
 ```python
 %python
@@ -83,7 +83,13 @@ dbutils.fs.mkdirs("/databricks/arrow")
 dbutils.fs.put("/databricks/arrow/arrow-install.sh", script, True)
 ```
 
-Note the path is `/databricks/arrow/arrow-install.sh`. This is what we will add to the Init Script path in the Advanced Options section of the cluster UI.  For more details please see the [Apache Arrow with R](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/arrow.md) section.
+Note the path is `/databricks/arrow/arrow-install.sh`. This is what we will add to the Init Script path in the Advanced Options section of the cluster UI.  After the init script completes simply include `library(arrow)` at the top of your R code and you are good to go.  
+
+To enable Arrow for Databricks Runtime 7.0+, attach the Arrow package to the cluster through the Cluster UI, then set the following Spark config under 'Advanced Options' in the Cluster UI:  
+
+`spark.sql.execution.arrow.sparkr.enabled true`
+
+For more details please see the [Apache Arrow with R](https://github.com/marygracemoesta/R-User-Guide/blob/master/Spark_Distributed_R/arrow.md) section.
 
 #### Library Installation
 One quick way to install a list of packages on a cluster is through an init script.  At a certain point you may see long cluster startup times as R has to download, compile, and install the packages.  See the [Faster Package Loads](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/package_management.md#faster-package-loads) section for an alternative solution.
