@@ -23,7 +23,7 @@ ___
 
 You can then launch hosted RStudio Server from the 'Apps' tab in the Cluster UI:
 
-<img src ="https://docs.databricks.com/_images/rstudio-apps-ui.png" height = 275 width = 1000>
+<img src ="https://docs.databricks.com/_images/rstudio-apps-ui.png" height = 325 width = 1000>
 
 For earlier versions of DBR you can attach the [RStudio Server installation script](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#rstudio-server-installation) to your cluster.  Full details for setting up hosted Rstudio Server can be found in the official docs [here](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#get-started-with-rstudio-server-open-source).  If you have a license for RStudio Server Pro you can [set that up](https://docs.databricks.com/spark/latest/sparkr/rstudio.html#install-rstudio-server-pro) as well.
 
