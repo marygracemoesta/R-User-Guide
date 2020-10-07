@@ -190,6 +190,7 @@ dbutils.fs.mkdirs("/databricks/rscripts")
 dbutils.fs.put("/databricks/rscripts/copy_library.sh", script, True)
 ```
 
+You can use any of the four default paths for R packages in Databricks Runtime, but the first - `/databricks/sparkR/lib` - is nice because the only package in it is SparkR.  This essentially gives you an empty directory to copy your pre-compiled packages to, removing the need to overwrite any other packages such as those found in the other paths.
 
 ___
 [Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
