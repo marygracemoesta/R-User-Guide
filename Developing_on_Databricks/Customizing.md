@@ -12,7 +12,7 @@ In addition to the various flavors of [Databricks Runtime](https://github.com/ma
   * [Apache Arrow Installation](#apache-arrow-installation)
   * [Library Installation](#library-installation)
   * [Running an R Script](#running-an-r-script)
-  * [Modifying Rprofile in RStudio](#modifying-rprofile)
+  * [Modifying Rprofile in RStudio](#modifying-rprofile-in-rstudio)
 
 ____
 
@@ -165,6 +165,30 @@ dbutils.fs.mkdirs("/databricks/rscripts")
 dbutils.fs.put("/databricks/rscripts/modify-rprofile.sh", script, True)
 ```
 Note the path is `/databricks/rscripts/modify-rprofile.sh`.  This is what we will add to the _Init Script_ path in the Advanced Options section of the cluster UI.
+
+#### Adding Packages to `.libPaths()` at Startup
+
+If you are using the Faster Package Loads method, you may find yourself adding extra lines of code for each script to set the `.libPaths()` to include your directory on DBFS.  To avoid adding these lines in each script or UDF, you can use an init script to copy over your R packages to the default library path for R - `/databricks/spark/R/lib`.
+
+```python
+%python
+
+## Define contents of script 
+script = """
+#!/bin/bash
+R --vanilla <<EOF 
+system("cp -R /dbfs/path_to_r_library /databricks/spark/R/lib/", intern = T)
+q()
+EOF
+"""
+
+## Create directory to save the script in
+dbutils.fs.mkdirs("/databricks/rscripts")
+
+## Save the script to DBFS
+dbutils.fs.put("/databricks/rscripts/copy_library.sh", script, True)
+```
+
 
 ___
 [Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
