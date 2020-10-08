@@ -143,7 +143,7 @@ Assuming you have installed your desired packages into a library on DBFS, you ca
 library(custom_package)
 ```
 
-If you need these libraries to be available to each worker, you can use an [init script](https://github.com/marygracemoesta/R-User-Guide/edit/master/Developing_on_Databricks/Customizing.md) or simply include it in your closure when running [user defined functions](linktocome).
+If you need these libraries to be available to each worker, you can use an [init script](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#add-a-library-at-startup) or simply include it in your closure when running [user defined functions](linktocome).
 
 ## Databricks Container Services
 
