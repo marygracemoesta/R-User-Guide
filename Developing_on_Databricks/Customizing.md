@@ -42,8 +42,8 @@ script = """
     sudo apt-get update
     sudo apt-get install -y gdebi-core alien
     cd /tmp
-    sudo wget https://download2.rstudio.org/rstudio-server-1.1.453-amd64.deb
-    sudo gdebi -n rstudio-server-1.1.453-amd64.deb
+    sudo wget https://www.rstudio.org/download/latest/stable/server/${UBUNTU_CODENAME}/rstudio-server-latest-amd64.deb
+    sudo gdebi -n rstudio-server-*-amd64.deb
     sudo rstudio-server restart
     exit 0
   else
