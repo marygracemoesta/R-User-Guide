@@ -73,8 +73,12 @@ script = """
 #!/bin/bash
 git clone https://github.com/apache/arrow
 cd arrow/r
-R CMD INSTALL .
-sudo su - -c "R -e 'arrow::install_arrow()'"
+R --vanilla <<EOF 
+install.packages('cpp11', repos='http://cran.us.r-project.org')
+system("R CMD INSTALL .")
+arrow::install_arrow()
+q()
+EOF
 """
 
 ## Create directory to save the script in
