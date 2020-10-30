@@ -10,7 +10,7 @@ In addition to the various flavors of [Databricks Runtime](https://github.com/ma
 * [Example Scripts](#example-scripts)
   * [RStudio Server Installation](#rstudio-server-installation)
   * [Apache Arrow Installation](#apache-arrow-installation)
-  * [Library Installation](#library-installation)
+  * [Package Installation](#library-installation)
   * [Running an R Script](#running-an-r-script)
   * [Modifying Rprofile in RStudio](#modifying-rprofile-in-rstudio)
   * [Add a Library at Startup](#add-a-library-at-startup)
