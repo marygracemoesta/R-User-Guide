@@ -149,7 +149,7 @@ If you need these libraries to be available to each worker, you can use an [init
 
 [Databricks Container Services](https://docs.databricks.com/clusters/custom-containers.html) (DCS) lets you specify a Docker image to run across your cluster.  This can be built off of the base Databricks Runtime image, or it can be entirely customized to your specifications.  DCS will give you the ultimate control and flexibility when it comes to locking down packages and their versions in an execution environment.  
 
-Here is an example R Dockerfile pulled from [the official git repo for DCS](https://github.com/databricks/containers) that grabs the latest version of R from RStudio:
+Here is an example R Dockerfile pulled from [the official git repo for DCS](https://github.com/databricks/containers) that grabs the latest version of R from RStudio and also installs RStudio Server:
 
 ```
 FROM databricksruntime/minimal:latest
@@ -176,11 +176,31 @@ RUN apt-get update \
 
 # hwriterPlus is used by Databricks to display output in notebook cells
 # Rserve allows Spark to communicate with a local R process to run R code
-RUN R -e "install.packages('hwriterPlus', repos='https://mran.revolutionanalytics.com/snapshot/2017-02-26')" \
+RUN R -e "install.packages(c('hwriterPlus'), repos='https://mran.revolutionanalytics.com/snapshot/2017-02-26')" \
+ && R -e "install.packages(c('htmltools'), repos='https://cran.microsoft.com/')" \
  && R -e "install.packages('Rserve', repos='http://rforge.net/')"
+
+# Additional instructions to setup rstudio. If you dont need rstudio, you can 
+# omit the below commands in your docker file. Even after this you need to use
+# an init script to start the RStudio daemon (See README.md for details.)
+
+# Databricks configuration for RStudio sessions.
+COPY Rprofile.site /usr/lib/R/etc/Rprofile.site
+
+# Rstudio installation.
+RUN apt-get update \
+ # Installation of rstudio in databricks needs /usr/bin/python.
+ && apt-get install -y python \
+ # Install gdebi-core.
+ && apt-get install -y gdebi-core \
+ # Download rstudio 1.2 package for ubuntu 16.04 and install it.
+ && apt-get install -y wget \
+ && wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5042-amd64.deb -O rstudio-server.deb \
+ && gdebi -n rstudio-server.deb \
+ && rm rstudio-server.deb
  ```
  
-Notice how the last two lines illustrate how to incorporate package installation in the image, including setting the version of the package.
+Notice how the middle section illustrates how to incorporate package installation in the image, including setting the version of the package.
 ___
 [Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
 
