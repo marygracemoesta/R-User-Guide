@@ -14,6 +14,7 @@ In addition to the various flavors of [Databricks Runtime](https://github.com/ma
   * [Running an R Script](#running-an-r-script)
   * [Modifying Rprofile in RStudio](#modifying-rprofile-in-rstudio)
   * [Add a Library at Startup](#add-a-library-at-startup)
+  * [XGBoost with GPU Installation](#xgboost-with-gpu-installation)
 
 ____
 
@@ -195,6 +196,35 @@ dbutils.fs.put("/databricks/rscripts/copy_library.sh", script, True)
 ```
 
 You can use any of the four default paths for R packages in Databricks Runtime, but the first - `/databricks/sparkR/lib` - is nice because the only package in it is SparkR.  This essentially gives you an empty directory to copy your pre-compiled packages to, removing the need to overwrite any other packages such as those found in the other paths.
+
+#### XGBoost with GPU Installation
+The CRAN version of the `xgboost` package isn't compatible with GPU training, so you'll need to use the latest GitHub source from DMLC and update CMake in Databricks Runtime.  
+
+```python
+%python
+
+## Define contents of the script
+script = """
+#!/bin/bash
+pip install cmake
+export CUDA_HOME=/usr/local/cuda
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64
+export PATH=$PATH:$CUDA_HOME/bin
+git clone --recursive https://github.com/dmlc/xgboost
+cd xgboost
+mkdir build
+cd build
+cmake .. -DUSE_CUDA=ON -DR_LIB=ON
+make install -j$(nproc)
+"""
+
+## Create directory to save the script in
+dbutils.fs.mkdirs("/databricks/xgboost-r-gpu")
+
+## Save the script to DBFS
+dbutils.fs.put("/databricks/xgboost-r-gpu/xgboost-r-gpu-install.sh", script, True)
+```
+This script takes about ten minutes to run since XGBoost needs to be built from source.
 
 ___
 [Back to table of contents](https://github.com/marygracemoesta/R-User-Guide#contents)
