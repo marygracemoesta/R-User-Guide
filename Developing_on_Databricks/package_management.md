@@ -79,7 +79,7 @@ install_github("tidyverse/dplyr")
 ```
 [See the devtools documentation for more details](https://www.rdocumentation.org/packages/devtools)
 
-If you want to install the custom package on each node in the cluster you will need to use an [init script](linktocome).
+If you want to install the custom package on each node in the cluster you will need to use an [init script](https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/Customizing.md#library-installation).
 
 ## Faster Package Loads
 
