@@ -12,6 +12,7 @@ In addition to the various flavors of [Databricks Runtime](https://github.com/ma
   * [Apache Arrow Installation](#apache-arrow-installation)
   * [Package Installation](#library-installation)
   * [Running an R Script](#running-an-r-script)
+  * [Setting Environment Variables](#setting-environment-variables)
   * [Modifying Rprofile in RStudio](#modifying-rprofile-in-rstudio)
   * [Add a Library at Startup](#add-a-library-at-startup)
   * [XGBoost with GPU Installation](#xgboost-with-gpu-installation)
@@ -147,6 +148,25 @@ dbutils.fs.put("/databricks/rscripts/my-r-script.sh", script, True)
 ```
 
 Note the path is `/databricks/rscripts/my-r-script.sh`.  This is what we will add to the _Init Script_ path in the Advanced Options section of the cluster UI.
+
+#### Setting Environment Variables
+The cluster UI allows for setting environment variables, but these are not propogated to R sessions today (6/21).  To ensure that variables are set in R the following init script will copy them from the Spark environment to `Renviron`.
+
+```
+%python
+script = """
+#!/bin/bash
+if [[ $DB_IS_DRIVER = "TRUE" ]]; then
+ grep -i "=" /databricks/spark/conf/spark-env.sh | sed 's/export //g' | egrep -vi 'SPARK_LOCAL_IP|SPARK_WORKER_MEMORY|SPARK_LOCAL_DIRS' >> /usr/lib/R/etc/Renviron
+fi
+"""
+
+## Create directory to save the script in
+dbutils.fs.mkdirs("/databricks/rscripts")
+
+## Save the script to DBFS
+dbutils.fs.put("/databricks/rscripts/set-env-vars.sh", script, True)
+```
 
 #### Modifying Rprofile in RStudio
 Customizing your Rprofile is great way to enhance your R experience.  You can recreate this experience on Databricks by leveraging an init script to modify your `Rprofile.site` file.  Essentially you will pipe an R script into the `Rprofile.site` file, appending changes to it.  **Note:**  This will only work on RStudio, not in an R Notebook.  
