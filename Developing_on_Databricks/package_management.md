@@ -28,7 +28,7 @@ Under the 'Libraries' tab in the Clusters UI you can attach packages to the clus
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/attach_library_clusters_ui.png?raw=true">
 
-Each time the cluster is started these packages will be installed on *both* driver and worker nodes.  This is important for when you want to perform [user defined functions](#udfs) with `SparkR` or `sparklyr`.
+Each time the cluster is started these packages will be installed on *both* driver and worker nodes.  This is important for when you want to perform [user defined functions](#Spark_distributed_R/udfs) with `SparkR` or `sparklyr`.
 
 ### Older Package Versions
 
