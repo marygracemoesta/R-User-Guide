@@ -20,7 +20,7 @@ At the most basic level, you can install R packages in your notebooks and RStudi
 
 <img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Developing_on_Databricks/images/installpackages.png?raw=true">
 
-This will install the package on the driver node **only**.  
+Packages installed this way will be available across the cluster - driver and worker nodes.  They will also be scoped to the user that installed them, meaning, multiple versions of the same package can be installed this way on the same compute without creating conflicts between them.  
 
 ### Cluster Scope
 
