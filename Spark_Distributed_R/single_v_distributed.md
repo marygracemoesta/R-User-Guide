@@ -13,9 +13,9 @@ ___
 ## Single Node R on Databricks
 If your data set will fit in memory on a single reasonably sized machine, you may not need to use Spark.  In these cases you can provision a 'cluster' with 0 workers and one driver.  This configuration provides a single node to develop and execute R programs on Databricks. 
 
-<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/images/single_node_cluster.png?raw=true">
+<img src="https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/images/single_node_cluster.png?raw=true">
 
-The architecture here is quite simple - a single virtual machine in the cloud with [Databricks Runtime](DBRlink).  While Spark is inaccessible in this architecture, you can still use many of the benefits of Databricks: RStudio, Notebooks, Libraries, and [DBFS](https://github.com/marygracemoesta/R-User-Guide/blob/master/Databricks_Architecture_Overview/DBFS.md#dbfs) as the persistent storage layer.  
+The architecture here is quite simple - a single virtual machine in the cloud with [Databricks Runtime](DBRlink).  While Spark is inaccessible in this architecture, you can still use many of the benefits of Databricks: RStudio, Notebooks, Libraries, and [DBFS](https://github.com/marygracemoesta/R-User-Guide/blob/master/Getting_Started/DBFS.md#dbfs) as the persistent storage layer.  
 
 ## Cluster Computing with Spark and R 
 When the size of your data will no longer fit in memory on a single node, it's time to turn to Spark.  Spark is a distributed, in memory processing engine with a rich functionality for data engineering and data science that can scale to petabytes of data.  Luckily for R users, there are two APIs for accessing Spark - `SparkR` and `sparklyr`.  For now we will focus on the common architecture between the two, but if you want more detail on the differences between them see [this section](linktocome).
